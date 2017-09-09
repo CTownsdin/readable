@@ -26,20 +26,16 @@ app.get('/', (req, res) => {
     The following endpoints are available:
 
     GET /categories
-      USAGE: 
         Get all of the categories available for the app. List is found in categories.js.
         Feel free to extend this list as you desire.
     
     GET /:category/posts
-      USAGE:
         Get all of the posts for a particular category
 
     GET /posts
-      USAGE:
         Get all of the posts. Useful for the main page when no category is selected.
     
     POST /posts
-      USAGE:
         Add a new post
       
       PARAMS: 
@@ -51,33 +47,27 @@ app.get('/', (req, res) => {
         category: Any of the categories listed in categories.js. Feel free to extend this list as you desire.
 
     GET /posts/:id
-      USAGE:
         Get the details of a single post
 
     POST /posts/:id
-      USAGE:
         Used for voting on a post
       PARAMS:
         option - String: Either "upVote" or "downVote"
         
     PUT /posts/:id
-      USAGE:
         Edit the details of an existing post
       PARAMS:
         title - String
         body - String
 
     DELETE /posts/:id
-      USAGE:
         Sets the deleted flag for a post to 'true'. 
         Sets the parentDeleted flag for all child comments to 'true'.
       
     GET /posts/:id/comments
-      USAGE:
         Get all the comments for a single post
     
     POST /comments
-      USAGE:
         Add a comment to a post
 
       PARAMS:
@@ -88,15 +78,12 @@ app.get('/', (req, res) => {
         parentId: Should match a post id in the database.
 
     GET /comments/:id
-      USAGE:
         Get the details for a single comment
 
     POST /comments/:id
-      USAGE:
         Used for voting on a comment.
 
     PUT /comments/:id
-      USAGE:
         Edit the details of an existing comment
      
       PARAMS:
@@ -104,7 +91,6 @@ app.get('/', (req, res) => {
         body: String
 
     DELETE /comments/:id
-      USAGE:
         Sets a comment's deleted flag to 'true'
  </pre>
   `
@@ -316,5 +302,5 @@ app.delete('/comments/:id', (req, res) => {
 })
 
 app.listen(config.port, () => {
-  console.log('Server listening on port %s, Ctrl+C to stop', config.port)
+  console.log(`Server listening on port ${config.port}, Ctrl+C to stop`)
 })

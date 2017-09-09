@@ -1,4 +1,14 @@
+# about the Readable ap
+Readable is a content and comments web app, like reddit.  Users can post content to categories, comment on posts, and vote on posts and comments.  The app uses react and redux.
+
+To run this project
+`$ nvm use 8.4`
+`$ npm install`
+`$ npm run start`
+
+
 # Readable API Server
+The app uses a simple local node.js server.  Documentation for that follow below.
 
 ## Installation
 

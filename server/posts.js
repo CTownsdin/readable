@@ -118,6 +118,7 @@ function edit (token, id, post) {
 }
 
 module.exports = {
+  defaultData,
   get,
   getAll,
   getByCategory,

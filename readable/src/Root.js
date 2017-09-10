@@ -1,5 +1,20 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+/* Component imports */
+import Post from './components/Post'
+
+
+const mockPost = {
+  id: '8xf0y6ziyjabvozdd253nd',
+  timestamp: 1467166872634,
+  title: 'This Post Has An Awesome Title!',
+  body: 'Everyone says so after all.',
+  author: 'CAT_in_the_HAT',
+  category: 'react',
+  voteScore: 3,
+  deleted: false
+}
+
 
 class Root extends Component {
   render() {
@@ -8,9 +23,7 @@ class Root extends Component {
         <div className="App-header">
           <h2>Welcome to the root view</h2>
         </div>
-        <p className="App-intro">
-          hi
-        </p>
+        <Post postDetails={mockPost}/>
       </div>
     );
   }

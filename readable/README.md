@@ -5,9 +5,63 @@ _____________________________________________
 Development Log, TODOs and such things
 _____________________________________________
 [x] Use the create-react-app build process scripts
-Create a Root view, 
-Create trivial Post component 
+[x] Create a Root view, 
+
+[ ] Create a Post component - as a place to start, start here and work in the details :)
+    [ ] show post details:  title, body, author, timestamp (h'r'able), vote score
+        [ ] put in a mocked post and render it.
+    [ ]
+    [ ]
+    [ ]
+[ ] Add standardJS and linting
+
 Create trivial Comment component
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

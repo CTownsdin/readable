@@ -16,10 +16,13 @@ import PropTypes from 'prop-types'
 
 const Post = ({ p }) => (
   <div className='post'>
+    <hr />
+    <hr />
     <h2>{p.title}</h2>
     <p>{p.body}</p>
     <p>by: {p.author}</p>
     <span>{p.voteScore} votes</span><button>UP</button><button>DOWN</button><span>TIME: {p.timestamp}</span>
+    <hr />
   </div>
 )
 

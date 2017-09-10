@@ -7,15 +7,36 @@ Development Log, TODOs and such things
 _____________________________________________
 [x] Use the create-react-app build process scripts
 [x] Create a Root view, 
-
 [x] Create a Post component - as a place to start, start here and work in the details :)
     [x] show post details:  title, body, author, timestamp (h'r'able), vote score
-    [ ]
-    [ ]
-    [ ]
-[ ] Add standardJS and linting
+[x] Add standardJS and linting
+[x] Create trivial Comment component
 
-Create trivial Comment component
+Look at how redux is implemented in the meals app... and start implementing the same over here.
+HEY - use as much as possible from the meals app!!!
+  use modals
+  modal state is in Root.js and comes from redux
+  ... 
+  
+  
+  Work on creating a post !
+  
+
+
+_________________________________________
+ROUTES
+_________________________________________
+
+Main aka 'Root' page
+
+/:category
+    all posts for a category
+/:category/:post_id
+    post details for a post
+
+A form for creating a new post
+
+A way to edit a post, with the same form from creating, but populated with data
 
 
 

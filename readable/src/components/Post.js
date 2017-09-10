@@ -2,18 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-const mockPost = {
-  "8xf0y6ziyjabvozdd253nd": {
-    id: '8xf0y6ziyjabvozdd253nd',
-    timestamp: 1467166872634,
-    title: 'This Post Has An Awesome Title!',
-    body: 'Everyone says so after all.',
-    author: 'CAT_in_the_HAT',
-    category: 'react',
-    voteScore: 3,
-    deleted: false
-  }
-}
+// const mockPost = {
+//   "8xf0y6ziyjabvozdd253nd": {
+//     id: '8xf0y6ziyjabvozdd253nd',
+//     timestamp: 1467166872634,
+//     title: 'This Post Has An Awesome Title!',
+//     body: 'Everyone says so after all.',
+//     author: 'CAT_in_the_HAT',
+//     category: 'react',
+//     voteScore: 3,
+//     deleted: false
+//   }
+// }
 
 const Post = ({ p }) => (
   <div className='post'>

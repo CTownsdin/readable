@@ -1,4 +1,4 @@
-# about the Readable ap
+# about the Readable app
 Readable is a content and comments web app, like reddit.  Users can post content to categories, comment on posts, and vote on posts and comments.  The app uses react and redux.
 
 To run this project

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 /* Component imports */
 import Post from './components/Post'
+import Comment from './components/Comment'
 
 
 const mockPost = {
@@ -15,6 +16,16 @@ const mockPost = {
   deleted: false
 }
 
+const mockComment = {
+  id: '8tu4bsun805n8un48ve89',
+  parentId: "8xf0y6ziyjabvozdd253nd",
+  timestamp: 1469479767190,
+  body: 'Comments. Are. Cool.',
+  author: 'thingone',
+  voteScore: -5,
+  deleted: false,
+  parentDeleted: false
+}
 
 class Root extends Component {
   render() {
@@ -24,6 +35,7 @@ class Root extends Component {
           <h2>Welcome to the root view</h2>
         </div>
         <Post p={mockPost}/>
+        <Comment c={mockComment}/>
       </div>
     );
   }

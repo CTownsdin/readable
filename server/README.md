@@ -92,12 +92,3 @@ The following endpoints are available:
 
 `DELETE /comments/:id`  
     Sets a comment's deleted flag to 'true'  
-
-
-_____________________________________________
-Development Log, TODOs and such things
-_____________________________________________
-Configure react, webpack, and babel
-Install react, and react redux, and react-router, prop-types
-Create a Root view, and trivial Post and Comment components
-? Start doing TDD ?  or at least SOME tests.

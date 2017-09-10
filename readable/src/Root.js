@@ -7,7 +7,7 @@ import Post from './components/Post'
 const mockPost = {
   id: '8xf0y6ziyjabvozdd253nd',
   timestamp: 1467166872634,
-  title: 'This Post Has An Awesome Title!',
+  title: 'Awesome Title!',
   body: 'Everyone says so after all.',
   author: 'CAT_in_the_HAT',
   category: 'react',
@@ -23,7 +23,7 @@ class Root extends Component {
         <div className="App-header">
           <h2>Welcome to the root view</h2>
         </div>
-        <Post postDetails={mockPost}/>
+        <Post p={mockPost}/>
       </div>
     );
   }

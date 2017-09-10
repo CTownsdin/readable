@@ -7,9 +7,8 @@ _____________________________________________
 [x] Use the create-react-app build process scripts
 [x] Create a Root view, 
 
-[ ] Create a Post component - as a place to start, start here and work in the details :)
-    [ ] show post details:  title, body, author, timestamp (h'r'able), vote score
-        [ ] put in a mocked post and render it.
+[x] Create a Post component - as a place to start, start here and work in the details :)
+    [x] show post details:  title, body, author, timestamp (h'r'able), vote score
     [ ]
     [ ]
     [ ]

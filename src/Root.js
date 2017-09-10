@@ -4,7 +4,6 @@ import './App.css'
 import Post from './components/Post'
 import Comment from './components/Comment'
 
-
 const mockPost = {
   id: '8xf0y6ziyjabvozdd253nd',
   timestamp: 1467166872634,
@@ -18,7 +17,7 @@ const mockPost = {
 
 const mockComment = {
   id: '8tu4bsun805n8un48ve89',
-  parentId: "8xf0y6ziyjabvozdd253nd",
+  parentId: '8xf0y6ziyjabvozdd253nd',
   timestamp: 1469479767190,
   body: 'Comments. Are. Cool.',
   author: 'thingone',
@@ -28,17 +27,17 @@ const mockComment = {
 }
 
 class Root extends Component {
-  render() {
+  render () {
     return (
-      <div className="App">
-        <div className="App-header">
+      <div className='App'>
+        <div className='App-header'>
           <h2>Welcome to the root view</h2>
         </div>
-        <Post p={mockPost}/>
-        <Comment c={mockComment}/>
+        <Post p={mockPost} />
+        <Comment c={mockComment} />
       </div>
-    );
+    )
   }
 }
 
-export default Root;
+export default Root

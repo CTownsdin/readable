@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-
 // const mockPost = {
 //   "8xf0y6ziyjabvozdd253nd": {
 //     id: '8xf0y6ziyjabvozdd253nd',
@@ -27,5 +26,5 @@ const Post = ({ p }) => (
 export default Post
 
 Post.propTypes = {
-  p: PropTypes.object.isRequired 
+  p: PropTypes.object.isRequired
 }

@@ -17,5 +17,14 @@
     "lint": "standard",
     "lint--fix": "standard --fix",
     "eject": "react-scripts eject"
+  },
+  "standard": {
+    "ignore": [
+      "server/*",
+      "src/registerServiceWorker"
+    ],
+    "globals": [
+      "it", "fetch", "URL"
+    ]
   }
 }

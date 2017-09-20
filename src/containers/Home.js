@@ -9,7 +9,7 @@ import { getPosts } from '../actions'
 // import { fetchAllPostsIfNeeded } from '../actions'
 import PostsList from '../containers/PostsList'
 
-class Root extends Component {
+class Home extends Component {
   constructor () {
     super()
     this.state = {
@@ -81,4 +81,4 @@ class Root extends Component {
 function mapStateToProps (state) { }
 
 // export default Root
-export default connect()(Root)
+export default connect()(Home)

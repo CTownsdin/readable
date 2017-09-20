@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/App.css'
+import { getPosts } from '../actions'
 /* Component imports */
 // import Post from './Post'
 // import Comment from '.Comment'
@@ -62,7 +63,7 @@ class Root extends Component {
           <PostsList />
         </div>
 
-        {/* <button onClick={() => dispatch(getPosts)}>Get All Posts</button> */}
+        <button onClick={() => this.props.dispatch(getPosts())}>Get All Posts</button>
 
       </div >
     )

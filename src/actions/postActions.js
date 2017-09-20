@@ -1,8 +1,4 @@
-// don't use axios, use isomorphic fetch
-
-// import axios from 'axios'
-// const GET_POSTS_FULFILLED = 'GET_POSTS_FULFILLED'
-// const GET_POSTS_REJECTED = 'GET_POSTS_REJECTED'
+// rem - don't use axios, use isomorphic fetch
 
 // let token = localStorage.token
 // if (!token) { token = localStorage.token = Math.random().toString(36).substr(-8) }

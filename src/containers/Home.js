@@ -5,6 +5,7 @@ import '../css/App.css'
 import * as postAction from '../actions/action-posts'  // Thunk
 import { Link } from 'react-router-dom'
 import Category from './Category'
+import Nav from '../components/Nav'
 
 class Home extends Component {
   // componentDidMount () {  // TODO:  Eventually we will want to display all posts on the homepage, per project requirements.
@@ -17,10 +18,11 @@ class Home extends Component {
         <div className='App-header'>
           <h2>Readable</h2>
         </div>
-
         {/* receive list of posts to render from application state, Category will be a connected component */}
         {/* map over each post and render the array of <Post /> */}
-        <Category title='React' />
+        {/* <Category title='React' /> */}
+        <h1>INSERT: ALL POSTS HERE</h1>
+        <h2>ranked by vote score</h2>
 
       </div >
     )

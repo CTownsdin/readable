@@ -1,12 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-// import AddExpensePage from '../components/AddExpensePage'
-// import EditExpensePage from '../components/EditExpensePage'
-// import ExpenseDashboardPage from '../components/ExpenseDashboardPage'
-// import Header from '../components/Header'
-// import HelpPage from '../components/HelpPage'
+import Nav from '../components/Nav'
 import Home from '../containers/Home'
 import NotFoundPage from '../pages/NotFoundPage'
+import Category from '../containers/Category'
 
 const MockCategoryPage = ({ categoryTitle }) => (
   <div>
@@ -18,12 +15,12 @@ const MockCategoryPage = ({ categoryTitle }) => (
 const AppRouter = () => (
   <BrowserRouter >
     <div>
+      <Nav />
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/react' component={MockCategoryPage} />
-        <Route exact path='/redux' component={MockCategoryPage} />
-        <Route exact path='/3dprinting' component={MockCategoryPage} />
-        <Route exact path='/running' component={MockCategoryPage} />
+        <Route exact path='/' component={Home} />  // TODO!  Use Category Page!
+        <Route exact path='/react' component={() => <Category title='react' />} />
+        <Route exact path='/redux' component={() => <Category title='redux' />} />
+        <Route exact path='/running' component={() => <Category title='running' />} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

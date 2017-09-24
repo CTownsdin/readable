@@ -65,6 +65,5 @@ ReactDOM.render(
     <Home />
     {/* </Provider> */}
   </AppRouter>,
-  document.getElementById('root'))
-
-// registerServiceWorker()
+  document.getElementById('root')
+)

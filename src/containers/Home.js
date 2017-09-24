@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import '../css/App.css'
 import * as postAction from '../actions/action-posts'  // Thunk
 import { Link } from 'react-router-dom'
+import Category from './Category'
 
 class Home extends Component {
   // componentDidMount () {  // TODO:  Eventually we will want to display all posts on the homepage, per project requirements.
@@ -14,15 +15,13 @@ class Home extends Component {
     return (
       <div className='App'>
         <div className='App-header'>
-          <h2>Welcome to the root view</h2>
+          <h2>Readable</h2>
         </div>
-        <p>some text on the home page</p>
-        {/* // render a category page right here first. */}
-        <h1>Category Title</h1>
-        <h2>Posts for this category below</h2>
+
         {/* receive list of posts to render from application state, Category will be a connected component */}
         {/* map over each post and render the array of <Post /> */}
-        <div />
+        <Category title='React' />
+
       </div >
     )
   }

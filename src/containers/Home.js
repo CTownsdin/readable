@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import '../css/App.css'
-import * as postAction from '../actions/action-posts'  // Thunk
-import { Link } from 'react-router-dom'
-import Category from './Category'
-import Nav from '../components/Nav'
+// import * as postAction from '../actions/action-posts'  // Thunk
 
 class Home extends Component {
   // componentDidMount () {  // TODO:  Eventually we will want to display all posts on the homepage, per project requirements.
@@ -37,13 +34,13 @@ Home.propTypes = {
   isLoading: PropTypes.bool.isRequired
 }
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts,
-    hasErrored: state.itemsHasErrored,
-    isLoading: state.itemsIsLoading
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     posts: state.posts,
+//     hasErrored: state.itemsHasErrored,
+//     isLoading: state.itemsIsLoading
+//   }
+// }
 
 // don't need to wrap dispatch, I can just call with dispatch, do this later/last if/as desired.
 // const mapDispatchToProps = (dispatch) => {

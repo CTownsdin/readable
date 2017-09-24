@@ -3,24 +3,64 @@ const clone = require('clone')
 let db = {}
 
 const defaultData = {
-  '8xf0y6ziyjabvozdd253nd': {
-    id: '8xf0y6ziyjabvozdd253nd',
+  '52c56115-a660-4a56-87f0-3b264e2ba0df': {
+    id: '52c56115-a660-4a56-87f0-3b264e2ba0df',
     timestamp: 1467166872634,
-    title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
-    author: 'thingtwo',
+    title: 'React is fun',
+    body: 'React is fun.  It responds to changes in state.  React is closer to raw javascript compared to other frameworks.',
+    author: 'react-fan',
     category: 'react',
     voteScore: 6,
     deleted: false
   },
-  '6ni6ok3ym7mf1p33lnez': {
-    id: '6ni6ok3ym7mf1p33lnez',
+  'bc89d677-cd93-4880-951b-de765bb9ba49': {
+    id: 'bc89d677-cd93-4880-951b-de765bb9ba49',
+    timestamp: 1437166872634,
+    title: 'React is really fun',
+    body: 'you know it is... really.',
+    author: 'react-fan',
+    category: 'react',
+    voteScore: 0,
+    deleted: false
+  },
+  'ecf65667-f644-4929-929d-8dcd7de37a2e': {
+    id: 'ecf65667-f644-4929-929d-8dcd7de37a2e',
     timestamp: 1468479767190,
     title: 'Learn Redux in 10 minutes!',
-    body: 'Just kidding. It takes more than 10 minutes to learn technology.',
-    author: 'thingone',
+    body: 'Just kidding. It takes more than 10 minutes to learn technology. But there are some fantastic courses available online now that can accelerate learning.',
+    author: 'getting-there-guy',
     category: 'redux',
-    voteScore: -5,
+    voteScore: 1,
+    deleted: false
+  },
+  '7721ed7a-0ead-4e10-a6a0-9fe31b73d344': {
+    id: '7721ed7a-0ead-4e10-a6a0-9fe31b73d344',
+    timestamp: 1461479767190,
+    title: 'Another post about Redux',
+    body: 'Just kidding, I like cats.',
+    author: 'too-many-cats',
+    category: 'redux',
+    voteScore: -2,
+    deleted: false
+  },
+  '2899c7bf-c340-4a29-87d8-05bfc0b79d0a': {
+    id: '2899c7bf-c340-4a29-87d8-05bfc0b79d0a',
+    timestamp: 1469779767190,
+    title: 'Seattle Runners - Checkout Greenlake',
+    body: 'Are you a runner in the Seattle area?  You have to checkout Greenlake on a sunny spring morning!  Then get a coffee at Starbucks with your new friends. :)',
+    author: 'Keep-on-moving-gal',
+    category: 'running',
+    voteScore: 3,
+    deleted: false
+  },
+  '89f4bba1-358a-49af-a9e3-379b205695d1': {
+    id: '89f4bba1-358a-49af-a9e3-379b205695d1',
+    timestamp: 1469779767190,
+    title: 'What shoes are best for trail running?',
+    body: 'Hey guys, what shoes should I get?',
+    author: 'shoeless-in-seattle',
+    category: 'running',
+    voteScore: 2,
     deleted: false
   }
 }

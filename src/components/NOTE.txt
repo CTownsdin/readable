@@ -1,2 +1,0 @@
-components/ is for unconnected components
-if unconnected, check if it could be a SFC

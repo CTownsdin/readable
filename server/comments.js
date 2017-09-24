@@ -5,21 +5,21 @@ let db = {}
 const defaultData = {
   '894tuq4ut84ut8v4t8wun89g': {
     id: '894tuq4ut84ut8v4t8wun89g',
-    parentId: '8xf0y6ziyjabvozdd253nd',
+    parentId: '52c56115-a660-4a56-87f0-3b264e2ba0df',
     timestamp: 1468166872634,
-    body: 'Hi there! I am a COMMENT.',
-    author: 'thingtwo',
-    voteScore: 6,
+    body: 'Hi there! I like react too!',
+    author: 'yuppers',
+    voteScore: 9,
     deleted: false,
     parentDeleted: false
   },
   '8tu4bsun805n8un48ve89': {
     id: '8tu4bsun805n8un48ve89',
-    parentId: '8xf0y6ziyjabvozdd253nd',
+    parentId: '52c56115-a660-4a56-87f0-3b264e2ba0df',
     timestamp: 1469479767190,
-    body: 'Comments. Are. Cool.',
-    author: 'thingone',
-    voteScore: -5,
+    body: 'Psssh, obvious post is obvious',
+    author: 'mrSerious',
+    voteScore: -1,
     deleted: false,
     parentDeleted: false
   }

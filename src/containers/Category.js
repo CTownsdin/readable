@@ -35,7 +35,7 @@ class Category extends React.Component {
       }
     ]
     const mockPostElements = mockPosts.map((p) => (
-      <li key={p.id}>{p.title}</li>
+      <Post p={p} />
     ))
     return (
       <div>

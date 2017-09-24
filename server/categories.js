@@ -14,8 +14,8 @@ const defaultData = {
       path: 'redux'
     },
     {
-      name: 'drones',
-      path: 'drones'
+      name: '3dprinting',
+      path: '3dprinting'
     },
     {
       name: 'running',

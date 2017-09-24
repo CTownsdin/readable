@@ -1,42 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import '../css/App.css'
-import { getPosts } from '../actions'
-/* Component imports */
-// import Post from './Post'
-// import Comment from '.Comment'
-// import Modal from 'react-modal'
-// import { fetchAllPostsIfNeeded } from '../actions'
-import PostsList from '../containers/PostsList'
+import * as postAction from '../actions/action-posts'  // Thunk
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
-  constructor () {
-    super()
-    this.state = {
-      postModalOpen: false,
-      commentModalOpen: false
-    }
-    this.openPostModal = this.openPostModal.bind(this)
-    this.closePostModal = this.closePostModal.bind(this)
-    this.openCommentModal = this.openCommentModal.bind(this)
-    this.closeCommentModal = this.closeCommentModal.bind(this)
-  }
-  openPostModal () {
-    this.setState({ postModalOpen: true })
-  }
-  closePostModal () {
-    this.setState({ postModalOpen: false })
-  }
-  openCommentModal () {
-    this.setState({ commentModalOpen: true })
-  }
-  closeCommentModal () {
-    this.setState({ commentModalOpen: false })
-  }
-  componentDidMount () {
-    // const { dispatch } = this.props
-    // dispatch(fetchAllPostsIfNeeded())
-  }
+  // componentDidMount () {  // TODO:  Eventually we will want to display all posts on the homepage, per project requirements.
+  //   this.props.getPosts('http://localhost:3001/posts')
+  // }
 
   render () {
     return (
@@ -44,41 +16,40 @@ class Home extends Component {
         <div className='App-header'>
           <h2>Welcome to the root view</h2>
         </div>
-        <br />
-        <button onClick={this.openPostModal}>click to open post modal</button>
-
-        {/* <Modal className='modal'
-          overlayClassName='overlay'
-          isOpen={this.state.postModalOpen}
-          onRequestClose={this.closePostModal}
-          contentLabel='Modal'
-        > */}
-        {/* </Modal> */}
-        <button onClick={this.closePostModal}>close post modal</button>
-        {/* {isFetching && posts.length === 0 && <h2>isFetching...</h2>}
-          {!isFetching && posts.length === 0 && <h2>posts.length === 0</h2>}
-          {posts.length > 0 && */}
-        {/* <div style={{ opacity: isFetching ? 0.5 : 1 }}> */}
-        <div>
-          <PostsList />
-        </div>
-
-        <button onClick={() => this.props.dispatch(getPosts())}>Get All Posts</button>
-
+        <p>some text on the home page</p>
+        {/* // render a category page right here first. */}
+        <h1>Category Title</h1>
+        <h2>Posts for this category below</h2>
+        {/* receive list of posts to render from application state, Category will be a connected component */}
+        {/* map over each post and render the array of <Post /> */}
+        <div />
       </div >
     )
   }
 }
 
-// AsyncApp.propTypes = {
-//   selectedSubreddit: PropTypes.string.isRequired,
-//   posts: PropTypes.array.isRequired,
-//   isFetching: PropTypes.bool.isRequired,
-//   lastUpdated: PropTypes.number,
-//   dispatch: PropTypes.func.isRequired
+Home.propTypes = {
+  getPosts: PropTypes.func.isRequired,
+  //
+  posts: PropTypes.array.isRequired,
+  hasErrored: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired
+}
+
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts,
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
+  }
+}
+
+// don't need to wrap dispatch, I can just call with dispatch, do this later/last if/as desired.
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getPosts: (url) => dispatch(postAction.postsGET(url))
+//   }
 // }
 
-function mapStateToProps (state) { }
-
-// export default Root
-export default connect()(Home)
+// export default connect(mapStateToProps)(Home)
+export default Home

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import '../css/App.css'
-// import * as postAction from '../actions/action-posts'  // Thunk
+import * as posts from '../actions/action-posts'  // Thunk
 
 class Home extends Component {
-  // componentDidMount () {  // TODO:  Eventually we will want to display all posts on the homepage, per project requirements.
-  //   this.props.getPosts('http://localhost:3001/posts')
-  // }
+  componentDidMount () {  // TODO:  Eventually we will want to display all posts on the homepage, per project requirements.
+    console.log('Home is running componentDidMount() and will run getPosts()')
+    this.props.getPosts('http://localhost:3001/posts')
+  }
 
   render () {
     return (
@@ -20,7 +21,7 @@ class Home extends Component {
         {/* <Category title='React' /> */}
         <h1>INSERT: ALL POSTS HERE</h1>
         <h2>ranked by vote score</h2>
-
+        <h3>Check Application State, are ALL the posts there in an array?</h3>
       </div >
     )
   }
@@ -34,20 +35,18 @@ Home.propTypes = {
   isLoading: PropTypes.bool.isRequired
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     posts: state.posts,
-//     hasErrored: state.itemsHasErrored,
-//     isLoading: state.itemsIsLoading
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts,
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
+  }
+}
 
-// don't need to wrap dispatch, I can just call with dispatch, do this later/last if/as desired.
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getPosts: (url) => dispatch(postAction.postsGET(url))
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPosts: (url) => dispatch(posts.postsGET(url))
+  }
+}
 
-// export default connect(mapStateToProps)(Home)
-export default Home
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

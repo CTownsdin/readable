@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import posts from './reducer-posts'
+import { posts, postsIsLoading, postsHasErrored } from './reducer-posts'
 
 const rootReducer = combineReducers({
-  posts
+  posts,
+  postsIsLoading,
+  postsHasErrored
 })
 
 export default rootReducer

@@ -19,10 +19,13 @@ export function postsIsLoading (state = false, action) {
   }
 }
 
-export function posts (state = [], action) {
+export function posts (state = {}, action) {
   switch (action.type) {
     case 'POSTS_FETCH_DATA_SUCCESS':
-      return action.posts
+      return ({
+        ...state,
+        posts: action.posts.data
+      })
 
     default:
       return state

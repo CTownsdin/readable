@@ -9,7 +9,7 @@ class Category extends React.Component {
       <div>
         <h1>{title} Posts</h1>
         <ul>
-          {posts.map((p) => <Post key={p.id} p={p} />)}
+          {posts.sort((a, b) => b.voteScore - a.voteScore).map((p) => <Post key={p.id} p={p} />)}
         </ul>
       </div>
     )
@@ -20,6 +20,6 @@ export default Category
 
 Category.propTypes = {
   title: PropTypes.string.isRequired,
-  posts: PropTypes.array.isRequired,  // array of posts to filter and render
-  nofilter: PropTypes.bool  // if true, display ALL posts, ie within <Home />
+  posts: PropTypes.array.isRequired
+  // don't filter here, filter posts before giving them to <Category />
 }

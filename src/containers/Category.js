@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import Post from '../components/Post'
 
 class Category extends React.Component {
@@ -16,10 +17,20 @@ class Category extends React.Component {
   }
 }
 
-export default Category
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts.posts
+    // postsIsLoading: state.postsIsLoading,
+    // postsHasErrored: state.postsHasErrored
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // getPosts: (url) => dispatch(posts.postsGET(url))  // TODO:?: if (!posts){ getPosts()}
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Category)
 
 Category.propTypes = {
-  title: PropTypes.string.isRequired,
-  posts: PropTypes.array.isRequired
-  // don't filter here, filter posts before giving them to <Category />
+  title: PropTypes.string.isRequired
 }

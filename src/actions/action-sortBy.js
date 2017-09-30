@@ -1,6 +1,6 @@
 export const SORT_UPDATE = 'SORT_UPDATE'
 
-export function sortBy (sort) {
+export function sort (sort) {
   return {
     type: SORT_UPDATE,
     payload: sort

@@ -5,7 +5,7 @@ let db = {}
 const defaultData = {
   '52c56115-a660-4a56-87f0-3b264e2ba0df': {
     id: '52c56115-a660-4a56-87f0-3b264e2ba0df',
-    timestamp: 1467166872634,
+    timestamp: 1506790258393,
     title: 'React is fun',
     body: 'React is fun.  It responds to changes in state.  React is closer to raw javascript compared to other frameworks.',
     author: 'react-fan',
@@ -15,7 +15,7 @@ const defaultData = {
   },
   'bc89d677-cd93-4880-951b-de765bb9ba49': {
     id: 'bc89d677-cd93-4880-951b-de765bb9ba49',
-    timestamp: 1437166872634,
+    timestamp: 1507395058393,
     title: 'React is really fun',
     body: 'you know it is... really.',
     author: 'react-fan',
@@ -25,7 +25,7 @@ const defaultData = {
   },
   'ecf65667-f644-4929-929d-8dcd7de37a2e': {
     id: 'ecf65667-f644-4929-929d-8dcd7de37a2e',
-    timestamp: 1468479767190,
+    timestamp: 1506185458393,
     title: 'Learn Redux in 10 minutes!',
     body: 'Just kidding. It takes more than 10 minutes to learn technology. But there are some fantastic courses available online now that can accelerate learning.',
     author: 'getting-there-guy',
@@ -35,7 +35,7 @@ const defaultData = {
   },
   '7721ed7a-0ead-4e10-a6a0-9fe31b73d344': {
     id: '7721ed7a-0ead-4e10-a6a0-9fe31b73d344',
-    timestamp: 1461479767190,
+    timestamp: 1505580658393,
     title: 'Another post about Redux',
     body: 'Just kidding, I like cats.',
     author: 'too-many-cats',
@@ -45,7 +45,7 @@ const defaultData = {
   },
   '2899c7bf-c340-4a29-87d8-05bfc0b79d0a': {
     id: '2899c7bf-c340-4a29-87d8-05bfc0b79d0a',
-    timestamp: 1469779767190,
+    timestamp: 1504975858393,
     title: 'Seattle Runners - Checkout Greenlake',
     body: 'Are you a runner in the Seattle area?  You have to checkout Greenlake on a sunny spring morning!  Then get a coffee at Starbucks with your new friends. :)',
     author: 'Keep-on-moving-gal',
@@ -55,7 +55,7 @@ const defaultData = {
   },
   '89f4bba1-358a-49af-a9e3-379b205695d1': {
     id: '89f4bba1-358a-49af-a9e3-379b205695d1',
-    timestamp: 1469779767190,
+    timestamp: 1504371058393,
     title: 'What shoes are best for trail running?',
     body: 'Hey guys, what shoes should I get?',
     author: 'shoeless-in-seattle',

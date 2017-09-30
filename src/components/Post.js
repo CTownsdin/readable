@@ -6,7 +6,7 @@ const Post = ({ p }) => (
     <h2>{p.title}</h2>
     <p>{p.body}</p>
     <p>by: {p.author}</p>
-    <span>{p.voteScore} votes</span><button>UP</button><button>DOWN</button><span>Posted on: {Date(p.timestamp)}</span>
+    <span>{p.voteScore} votes</span><button>UP</button><button>DOWN</button><span>Posted on: {`${new Date(p.timestamp)}`}</span>
     <hr />
   </div>
 )

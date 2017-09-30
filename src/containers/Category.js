@@ -3,19 +3,26 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Post from '../components/Post'
 // actions
-import { sortBy } from '../actions/action-sortBy'
+import { sort } from '../actions/action-sortBy'
 
 class Category extends React.Component {
   render () {
-    const { dispatch, posts, title } = this.props
+    const { dispatch, posts, sortedBy, title } = this.props
+
+    const sortedPosts = [...posts]
+    if (sortedBy === 'voteScore') {
+      sortedPosts.sort((p1, p2) => p2.voteScore - p1.voteScore)
+    } else if (sortedBy === 'timestamp') {
+      sortedPosts.sort((p1, p2) => p2.timestamp - p1.timestamp)
+    }
+
     return (
       <div>
         <h1>{title} Posts</h1>
-        {/* TODO:  toggle newest and votes on click ;) nice */}
-        <button onClick={() => dispatch(sortBy('timestamp'))}>Sort by newest first</button>
-        <button onClick={() => dispatch(sortBy('voteScore'))}>Sort by top voteScores first</button>
+        <button onClick={() => dispatch(sort('timestamp'))}>Lastest posts first</button>
+        <button onClick={() => dispatch(sort('voteScore'))}>Highest voted posts first</button>
         <ul>
-          {posts.sort((a, b) => b.voteScore - a.voteScore).map((p) => <Post key={p.id} p={p} />)}
+          {sortedPosts.map((p) => <Post key={p.id} p={p} />)}
         </ul>
       </div>
     )
@@ -24,17 +31,19 @@ class Category extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts.posts
+    posts: state.posts.posts,
     // postsIsLoading: state.postsIsLoading,
     // postsHasErrored: state.postsHasErrored
+    sortedBy: state.sort.sort
   }
 }
 // const mapDispatchToProps = (dispatch) => {
 //   return {
-//     // getPosts: (url) => dispatch(posts.postsGET(url))  // TODO:?: if (!posts){ getPosts()}
+//     // getPosts: (url) => dispatch(posts.postsGET(url))
 //   }
 // }
 // export default connect(mapStateToProps, mapDispatchToProps)(Category)
+
 export default connect(mapStateToProps)(Category)
 
 Category.propTypes = {

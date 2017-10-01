@@ -18,7 +18,7 @@ class Home extends Component {
           <h2>Readable</h2>
         </div>
         { !posts && <h3>Loading...</h3>}
-        { posts && <Category title='All' />}
+        { posts && <Category title='All Posts' postsCategory='' />}
       </div >
     )
   }

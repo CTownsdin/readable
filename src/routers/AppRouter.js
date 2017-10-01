@@ -11,9 +11,9 @@ const AppRouter = () => (
       <Nav />
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path='/react' component={() => <Category title='react' />} />
-        <Route exact path='/redux' component={() => <Category title='redux' />} />
-        <Route exact path='/running' component={() => <Category title='running' />} />
+        <Route exact path='/react' component={() => <Category title='React Posts Category' postsCategory='react' />} />
+        <Route exact path='/redux' component={() => <Category title='Redux Posts Category' postsCategory='redux' />} />
+        <Route exact path='/running' component={() => <Category title='Running Posts Category' postsCategory='running' />} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

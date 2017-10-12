@@ -32,7 +32,7 @@ export function posts (state = [], action) {
 
     case 'POSTS_VOTE_SUCCESS':
       const newPost = action.payload
-      console.log(`reducing: ${JSON.stringify(newPost, null, 2)}`)
+      // console.log(`reducing: ${JSON.stringify(newPost, null, 2)}`)
       return [
         ...state.map((p) => p.id === newPost.id ? newPost : p)
       ]

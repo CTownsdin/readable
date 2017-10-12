@@ -64,7 +64,6 @@ export function submitVote (postId, vote) {
   return (dispatch) => {
     axios.post(`http://localhost:3001/posts/${postId}`, `{ "option": "${vote}" }`, config)
       .then((res) => {
-        console.log('voted on a post')
         dispatch(postsUpdateVoteResults(res.data))
       })
       .catch(err => console.error(`Voting error: ${err}`))

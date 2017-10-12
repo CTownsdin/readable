@@ -21,25 +21,53 @@ export function postsFetchDataSuccess (posts) {
   }
 }
 
-// Thunk
-export function postsGET (url) {
+export function postsRemovePost (index) {  // TODO: setup delete/remove a post
+  return {
+    type: 'POSTS_REMOVE_POST',
+    index
+  }
+}
+
+const config = {
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': '12345678'
+  }
+}
+
+// thunk
+export function postsFetchData (url) {
   return (dispatch) => {
     dispatch(postsIsLoading(true))
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': '12345678'
-      }
-    }
     axios.get(url, config)
-      .then((response) => {
+      .then((res) => {
         dispatch(postsIsLoading(false))
-        return response
+        return res.data
       })
       .then((posts) => dispatch(postsFetchDataSuccess(posts)))
       .catch((err) => {
-        console.error(`postsGET has errored: ${err}`)
+        console.error(`postsFetchData has errored: ${err}`)
         dispatch(postsHasErrored(true))
       })
+  }
+}
+
+export function postsUpdateVoteResults (post) {
+  return {
+    type: 'POSTS_VOTE_SUCCESS',
+    payload: post
+  }
+}
+
+// thunk
+export function submitVote (postId, vote) {
+  return (dispatch) => {
+    axios.post(`http://localhost:3001/posts/${postId}`, `{ "option": "${vote}" }`, config)
+      .then((res) => {
+        console.log('voted on a post')
+        dispatch(postsUpdateVoteResults(res.data))
+      })
+      .catch(err => console.error(`Voting error: ${err}`))
+      // ? TODO: posts vote error state, dispatch one
   }
 }

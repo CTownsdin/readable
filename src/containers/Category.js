@@ -31,9 +31,13 @@ class Category extends React.Component {
         <Container fluid>
           <Panel style={{ marginTop: '0.5em' }}>
             <h2>{title}</h2>
+            <button className='Category__sortButton' onClick={() => dispatch(sortUpdate('timestamp'))}>
+              Newest Posts
+            </button>
+            <button className='Category__sortButton' onClick={() => dispatch(sortUpdate('voteScore'))}>
+              Highest Voted
+            </button>
           </Panel>
-          <button onClick={() => dispatch(sortUpdate('timestamp'))}>Lastest posts first</button>
-          <button onClick={() => dispatch(sortUpdate('voteScore'))}>Highest voted posts first</button>
           <ul>
             {posts.map((p) => (
               <Panel key={p.id}>

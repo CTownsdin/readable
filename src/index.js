@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './css/index.css'
 import Home from './containers/Home'
 import { Provider } from 'react-redux'
 import createStore from './configureStore'

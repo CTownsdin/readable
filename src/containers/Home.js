@@ -5,8 +5,10 @@ import '../css/App.css'
 import * as posts from '../actions/action-posts'
 import Category from './Category'
 
-import IoIosFlame from 'react-icons/lib/io/ios-flame'
-import IoThumbsup from 'react-icons/lib/io/thumbsup'
+// import IoIosFlame from 'react-icons/lib/io/ios-flame'
+// import IoThumbsup from 'react-icons/lib/io/thumbsup'
+// <IoIosFlame />
+// <IoThumbsup />
 
 class Home extends Component {
   componentDidMount () {
@@ -17,11 +19,6 @@ class Home extends Component {
     const { posts, postsIsLoading, postsHasErrored } = this.props
     return (
       <div className='App'>
-        <div className='App-header'>
-          <span><h1>Readable</h1></span>
-        </div>
-        <IoIosFlame />
-        <IoThumbsup />
         {postsIsLoading && !postsHasErrored && <h2>Loading posts...</h2>}
         {postsHasErrored && <h2>Sorry, there's been an error!</h2>}
         {posts && <Category title='All Posts' postsCategory='' />}

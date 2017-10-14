@@ -5,6 +5,9 @@ import Post from '../components/Post'
 // actions
 import { sortUpdate } from '../actions/action-sort'
 import { submitVote } from '../actions/action-posts'
+// muicss
+import Panel from 'muicss/lib/react/panel'
+import Container from 'muicss/lib/react/container'
 
 class Category extends React.Component {
   constructor () {
@@ -25,12 +28,20 @@ class Category extends React.Component {
 
     return (
       <div>
-        <h1>{title}</h1>
-        <button onClick={() => dispatch(sortUpdate('timestamp'))}>Lastest posts first</button>
-        <button onClick={() => dispatch(sortUpdate('voteScore'))}>Highest voted posts first</button>
-        <ul>
-          {posts.map((p) => <Post key={p.id} p={p} voteHandler={this.handleVote} />)}
-        </ul>
+        <Container fluid>
+          <Panel style={{ marginTop: '0.5em' }}>
+            <h2>{title}</h2>
+          </Panel>
+          <button onClick={() => dispatch(sortUpdate('timestamp'))}>Lastest posts first</button>
+          <button onClick={() => dispatch(sortUpdate('voteScore'))}>Highest voted posts first</button>
+          <ul>
+            {posts.map((p) => (
+              <Panel key={p.id}>
+                <Post p={p} voteHandler={this.handleVote} />
+              </Panel>
+            ))}
+          </ul>
+        </Container>
       </div>
     )
   }

@@ -5,6 +5,9 @@ import '../css/App.css'
 import * as posts from '../actions/action-posts'
 import Category from './Category'
 
+import IoIosFlame from 'react-icons/lib/io/ios-flame'
+import IoThumbsup from 'react-icons/lib/io/thumbsup'
+
 class Home extends Component {
   componentDidMount () {
     this.props.getPosts('http://localhost:3001/posts')
@@ -15,11 +18,13 @@ class Home extends Component {
     return (
       <div className='App'>
         <div className='App-header'>
-          <h2>Readable</h2>
+          <span><h1>Readable</h1></span>
         </div>
-        { postsIsLoading && !postsHasErrored && <h2>Loading posts...</h2> }
-        { postsHasErrored && <h2>Sorry, there's been an error!</h2> }
-        { posts && <Category title='All Posts' postsCategory='' /> }
+        <IoIosFlame />
+        <IoThumbsup />
+        {postsIsLoading && !postsHasErrored && <h2>Loading posts...</h2>}
+        {postsHasErrored && <h2>Sorry, there's been an error!</h2>}
+        {posts && <Category title='All Posts' postsCategory='' />}
       </div >
     )
   }

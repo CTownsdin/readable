@@ -12,7 +12,7 @@ import Category from './Category'
 
 class Home extends Component {
   componentDidMount () {
-    this.props.getPosts('http://localhost:3001/posts')
+    this.props.getPosts('http://localhost:3001/posts')  // correct ??
   }
 
   render () {
@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
 
 Home.propTypes = {
-  getPosts: PropTypes.func.isRequired,
+  getPosts: PropTypes.func.isRequired,  // confused about this here...
   //
   posts: PropTypes.array,
   postsIsLoading: PropTypes.bool.isRequired,

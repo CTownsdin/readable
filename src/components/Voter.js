@@ -6,7 +6,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import IoArrowUpC from 'react-icons/lib/io/arrow-up-c'
 import IoArrowDownC from 'react-icons/lib/io/arrow-down-c'
-// <IoIosFlame />
+// TODO:  <IoIosFlame />  &&  ion-ios-snowy    next to the vote score on 5x's  :)
 
 const Voter = ({ voteScore, handleVoting, voteId }) => (
   <div className='voter'> {/* TODO: ~float voter right, in a [BOX] */}

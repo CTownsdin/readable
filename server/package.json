@@ -7,7 +7,7 @@
   },
   "description": "A server for the Udacity Reddit Clone project for ReactND",
   "scripts": {
-    "start": "node server"
+    "start": "nodemon server"
   },
   "main": "index.js",
   "keywords": [

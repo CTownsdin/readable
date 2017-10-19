@@ -22,6 +22,16 @@ const defaultData = {
     voteScore: -1,
     deleted: false,
     parentDeleted: false
+  },
+  '8tu4bsun777n8un48ve89': {
+    id: '8tu4bsun777n8un48ve89',
+    parentId: '52c56115-a660-4a56-87f0-3b264e2ba0df',
+    timestamp: 1470479767190,
+    body: 'Psssh, obvious post is obvious, AGAIN, Comment',
+    author: 'mrSerious',
+    voteScore: -3,
+    deleted: false,
+    parentDeleted: false
   }
 }
 

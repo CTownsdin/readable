@@ -15,34 +15,11 @@ import { commentsFetchData } from '../actions/action-comments'
 class PostDetails extends React.Component {
   componentDidMount () {
     const { postId } = this.props.match.params
-    this.props.getComments(`http://localhost:3001/posts/${postId}`)
+    this.props.getComments(`http://localhost:3001/posts/${postId}/comments`)
   }
 
   render () {
-    // const { dispatch, postsCategory, sort, title } = this.props
-    const mockComment = {
-      'id': '52c56115-a660-4a56-87f0-3b264e2ba0df',
-      'timestamp': 1506790258393,
-      'title': 'React is fun',
-      'body': 'React is fun.  It responds to changes in state.  React is closer to raw javascript compared to other frameworks.',
-      'author': 'react-fan',
-      'category': 'react',
-      'voteScore': 12,
-      'deleted': false
-    }
-
-    const mockPost = {
-      'id': '52c56115-a660-4a56-87f0-3b264e2ba0df',
-      'timestamp': 1506790258393,
-      'title': 'React is fun',
-      'body': 'React is fun.  It responds to changes in state.  React is closer to raw javascript compared to other frameworks.',
-      'author': 'react-fan',
-      'category': 'react',
-      'voteScore': 12,
-      'deleted': false
-    }
-    // let { posts } = this.props
-    // if (postsCategory) posts = posts.filter((p) => p.category === postsCategory)
+    let { comments } = this.props
     // if (sort === 'voteScore') posts.sort((p1, p2) => p2.voteScore - p1.voteScore)
     // else if (sort === 'timestamp') posts.sort((p1, p2) => p2.timestamp - p1.timestamp)
 
@@ -50,25 +27,23 @@ class PostDetails extends React.Component {
       <div>
         <Container fluid>
           <Panel style={{ marginTop: '0.5em' }}>
-            {/* <h2>{title}</h2>
+            <Post p={mockPost} />
+            {/*
             <button className='Category__sortButton' onClick={() => dispatch(sortUpdate('timestamp'))}>
               Newest Posts
             </button>
             <button className='Category__sortButton' onClick={() => dispatch(sortUpdate('voteScore'))}>
               Highest Voted
             </button> */}
-            <Post p={mockPost} />
           </Panel>
-          <ul>
-            {/* {posts.map((p) => (
-              <Panel key={p.id}>
-                <Post p={p} voteHandler={this.handleVote} />
-              </Panel>
-            ))} */}
+          <ul className='PostDetails__commentsList'>
             <Panel>
-              <h1>{this.props.id}</h1>
-              <Comment c={mockComment} />
-              <h1>{this.props.match.params.postId}</h1>
+              {comments.map((c) => (
+                <Panel key={c.id}>
+                  <Comment c={c} />
+                  {/* voteHandler={this.handleVote} */}
+                </Panel>
+              ))}
             </Panel>
           </ul>
         </Container>

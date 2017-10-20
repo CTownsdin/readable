@@ -59,13 +59,6 @@ const mapStateToProps = (state) => {
     sort: state.sort
   }
 }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     // getPosts: (url) => dispatch(posts.postsGET(url))
-//   }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Category)
-
 export default connect(mapStateToProps)(Category)
 
 Category.propTypes = {

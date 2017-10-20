@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import '../css/App.css'
-import * as posts from '../actions/action-posts'
+import { postsFetchData } from '../actions/action-posts'
 import Category from './Category'
-
 // import IoIosFlame from 'react-icons/lib/io/ios-flame'
 // import IoThumbsup from 'react-icons/lib/io/thumbsup'
 // <IoIosFlame />
@@ -12,7 +11,7 @@ import Category from './Category'
 
 class Home extends Component {
   componentDidMount () {
-    this.props.getPosts('http://localhost:3001/posts')  // correct ??
+    this.props.dispatch(postsFetchData('http://localhost:3001/posts'))
   }
 
   render () {
@@ -34,16 +33,14 @@ const mapStateToProps = (state) => {
     postsHasErrored: state.postsHasErrored
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getPosts: (url) => dispatch(posts.postsFetchData(url))
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getPosts: (url) => dispatch(posts.postsFetchData(url))
+//   }
+// }
+export default connect(mapStateToProps)(Home)
 
 Home.propTypes = {
-  getPosts: PropTypes.func.isRequired,  // confused about this here...
-  //
   posts: PropTypes.array,
   postsIsLoading: PropTypes.bool.isRequired,
   postsHasErrored: PropTypes.bool.isRequired

@@ -9,17 +9,23 @@ import Post from '../components/Post'
 import Comment from '../components/Comment'
 // actions
 import { commentsFetchData } from '../actions/action-comments'
+import { postsFetchData } from '../actions/action-posts'
 // import { sortUpdate } from '../actions/action-sort'
 // import { submitVote } from '../actions/action-posts'
 
 class PostDetails extends React.Component {
   componentDidMount () {
     const { postId } = this.props.match.params
-    this.props.getComments(`http://localhost:3001/posts/${postId}/comments`)
+    this.props.dispatch(commentsFetchData(`http://localhost:3001/posts/${postId}/comments`))
+    if (this.props.posts.length === 0) {
+      this.props.dispatch(postsFetchData('http://localhost:3001/posts'))
+    }
   }
 
   render () {
+    const { postId } = this.props.match.params
     let { comments } = this.props
+    let mainPost = this.props.posts.find(p => p.id === postId)
     // if (sort === 'voteScore') posts.sort((p1, p2) => p2.voteScore - p1.voteScore)
     // else if (sort === 'timestamp') posts.sort((p1, p2) => p2.timestamp - p1.timestamp)
 
@@ -27,17 +33,12 @@ class PostDetails extends React.Component {
       <div>
         <Container fluid>
           <Panel style={{ marginTop: '0.5em' }}>
-            <Post p={mockPost} />
-            {/*
-            <button className='Category__sortButton' onClick={() => dispatch(sortUpdate('timestamp'))}>
-              Newest Posts
-            </button>
-            <button className='Category__sortButton' onClick={() => dispatch(sortUpdate('voteScore'))}>
-              Highest Voted
-            </button> */}
+            {mainPost &&
+              <Post p={mainPost} />
+            }
           </Panel>
           <ul className='PostDetails__commentsList'>
-            <Panel>
+            <Panel><p><em>...comments</em></p>
               {comments.map((c) => (
                 <Panel key={c.id}>
                   <Comment c={c} />
@@ -52,20 +53,16 @@ class PostDetails extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     comments: state.comments,
     commentsIsLoading: state.commentsIsLoading,
     commentsHasErrored: state.commentsHasErrored,
-    sort: state.sort
+    sort: state.sort,
+    posts: state.posts
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getComments: (url) => dispatch(commentsFetchData(url))
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetails)
+export default connect(mapStateToProps)(PostDetails)
 
 PostDetails.propTypes = {
   getComments: PropTypes.func.isRequired

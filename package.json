@@ -7,7 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "lint": "standard --verbose | snazzy",
-    "lint--fix": "standard --fix | snazzy",
+    "lint-fix": "standard --fix | snazzy",
     "eject": "react-scripts eject"
   },
   "standard": {

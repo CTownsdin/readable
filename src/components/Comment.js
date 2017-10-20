@@ -17,6 +17,7 @@ const Comment = ({ c, voteHandler }) => (
         <p>comment by: {c.author}</p>
       </Col>
     </Row>
+    <div className='Comment__timestamp'>Posted: {`${new Date(c.timestamp)}`}</div>
   </div>
 )
 

@@ -1,10 +1,11 @@
 
-/* TODO:  BEM all this, and remove all inline styling, expect for strong */
+/* TODO:  Remove any inline styling, expect strong or em */
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: darkorange
 }
 
 .App-header {
@@ -15,7 +16,6 @@ body {
   font-size: large;
 }
 
-/* TODO: BEM this */
 .is-active {
   font-weight: bolder;
 }
@@ -31,3 +31,15 @@ ul { padding: 0 }
 /* .Category__sortButton {
   TODO:
 } */
+
+.Main-container {
+  background-color: darkorange
+}
+
+.Sub-container {
+  background-color: darkgrey
+}
+
+.voter {
+  text-align: center;
+}

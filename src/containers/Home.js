@@ -33,11 +33,6 @@ const mapStateToProps = (state) => {
     postsHasErrored: state.postsHasErrored
   }
 }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getPosts: (url) => dispatch(posts.postsFetchData(url))
-//   }
-// }
 export default connect(mapStateToProps)(Home)
 
 Home.propTypes = {

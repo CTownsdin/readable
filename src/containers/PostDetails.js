@@ -31,14 +31,14 @@ class PostDetails extends React.Component {
 
     return (
       <div>
-        <Container fluid>
+        <Container fluid className='Main-container'>
           <Panel style={{ marginTop: '0.5em' }}>
             {mainPost &&
               <Post p={mainPost} />
             }
           </Panel>
           <ul className='PostDetails__commentsList'>
-            <Panel><p><em>...comments</em></p>
+            <Panel className='Sub-container'><p><em>...comments</em></p>
               {comments.map((c) => (
                 <Panel key={c.id}>
                   <Comment c={c} />

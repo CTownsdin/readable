@@ -37,9 +37,14 @@ ul { padding: 0 }
 }
 
 .Sub-container {
-  background-color: darkgrey
+  background-color: lightgrey
 }
 
 .voter {
   text-align: center;
+}
+
+.Category__title {
+  margin-top: 12px;
+  background-color: lightgrey;
 }

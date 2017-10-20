@@ -29,7 +29,7 @@ class Category extends React.Component {
     return (
       <div>
         <Container fluid className='Main-container'>
-          <Panel style={{ marginTop: '0.75em' }}>
+          <Panel className='Category__title'>
             <h2>{title}</h2>
             <button className='Category__sortButton' onClick={() => dispatch(sortUpdate('timestamp'))}>
               Newest Posts

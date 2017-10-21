@@ -4,11 +4,16 @@ import { connect } from 'react-redux'
 import Post from '../components/Post'
 // actions
 import { sortUpdate } from '../actions/action-sort'
+import { postsFetchData } from '../actions/action-posts'
 // muicss
 import Panel from 'muicss/lib/react/panel'
 import Container from 'muicss/lib/react/container'
 
 class Category extends React.Component {
+  componentDidMount () {
+    if (this.props.posts.length === 0) this.props.dispatch(postsFetchData('http://localhost:3001/posts'))  // deep link
+  }
+
   render () {
     const { dispatch, postsCategory, sort, title } = this.props
     let { posts } = this.props

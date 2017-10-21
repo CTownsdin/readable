@@ -60,7 +60,7 @@ export function postsUpdateVoteResults (post) {
 }
 
 // thunk
-export function submitVote (postId, vote) {
+export function submitPostVote (postId, vote) {
   return (dispatch) => {
     axios.post(`http://localhost:3001/posts/${postId}`, `{ "option": "${vote}" }`, config)
       .then((res) => {

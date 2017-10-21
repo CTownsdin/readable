@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Voter from './Voter'
+import Voter from './CommentVoter'
 import Row from 'muicss/lib/react/row'
 import Col from 'muicss/lib/react/col'
 
 // note: very similar to Post, but electing to keep separate
 
-const Comment = ({ c, voteHandler }) => (
+const Comment = ({ c }) => (
   <div className='comment'>
     <Row>
       <Col md='1'>
-        <Voter className='voter' voteScore={c.voteScore} handleVoting={voteHandler} voteId={c.id} />
+        <Voter className='voter' voteScore={c.voteScore} voteId={c.id} />
       </Col>
       <Col md='11'>
         <p>{c.body}</p>

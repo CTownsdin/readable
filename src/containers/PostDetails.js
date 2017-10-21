@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 // muicss
 import Panel from 'muicss/lib/react/panel'
@@ -11,15 +10,12 @@ import Comment from '../components/Comment'
 import { commentsFetchData } from '../actions/action-comments'
 import { postsFetchData } from '../actions/action-posts'
 // import { sortUpdate } from '../actions/action-sort'
-// import { submitVote } from '../actions/action-posts'
 
 class PostDetails extends React.Component {
   componentDidMount () {
     const { postId } = this.props.match.params
+    if (this.props.posts.length === 0) this.props.dispatch(postsFetchData('http://localhost:3001/posts')) // deep linking
     this.props.dispatch(commentsFetchData(`http://localhost:3001/posts/${postId}/comments`))
-    if (this.props.posts.length === 0) {
-      this.props.dispatch(postsFetchData('http://localhost:3001/posts'))
-    }
   }
 
   render () {
@@ -42,7 +38,6 @@ class PostDetails extends React.Component {
               {comments.map((c) => (
                 <Panel key={c.id}>
                   <Comment c={c} />
-                  {/* voteHandler={this.handleVote} */}
                 </Panel>
               ))}
             </Panel>
@@ -63,7 +58,3 @@ const mapStateToProps = (state) => {
   }
 }
 export default connect(mapStateToProps)(PostDetails)
-
-PostDetails.propTypes = {
-  getComments: PropTypes.func.isRequired
-}

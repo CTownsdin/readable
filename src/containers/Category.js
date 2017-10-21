@@ -4,21 +4,11 @@ import { connect } from 'react-redux'
 import Post from '../components/Post'
 // actions
 import { sortUpdate } from '../actions/action-sort'
-import { submitVote } from '../actions/action-posts'
 // muicss
 import Panel from 'muicss/lib/react/panel'
 import Container from 'muicss/lib/react/container'
 
 class Category extends React.Component {
-  constructor () {
-    super()
-    this.handleVote = this.handleVote.bind(this)
-  }
-
-  handleVote (id, vote) {
-    this.props.dispatch(submitVote(id, vote))
-  }
-
   render () {
     const { dispatch, postsCategory, sort, title } = this.props
     let { posts } = this.props

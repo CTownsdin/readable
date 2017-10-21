@@ -59,14 +59,14 @@ export function commentsUpdateVoteResults (comment) {
   }
 }
 
-// thunk  // TODO:  ...
-// export function submitVote (commentId, vote) {
-//   return (dispatch) => {
-//     axios.post(`http://localhost:3001/posts/${commentId}`, `{ "option": "${vote}" }`, config)
-//       .then((res) => {
-//         dispatch(commentsUpdateVoteResults(res.data))
-//       })
-//       .catch(err => console.error(`Voting error: ${err}`))
-//       // ? TODO: posts vote error state, dispatch one
-//   }
-// }
+// thunk
+export function submitCommentVote (commentId, vote) {
+  return (dispatch) => {
+    axios.post(`http://localhost:3001/comments/${commentId}`, `{ "option": "${vote}" }`, config)
+      .then((res) => {
+        dispatch(commentsUpdateVoteResults(res.data))
+      })
+      .catch(err => console.error(`Voting error: ${err}`))
+      // ? TODO: posts vote error state, dispatch one
+  }
+}

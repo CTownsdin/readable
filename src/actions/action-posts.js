@@ -14,10 +14,38 @@ export function postsIsLoading (bool) {
   }
 }
 
+export function showPostForm (bool) {
+  return {
+    type: 'SHOW_POST_FORM',
+    payload: bool
+  }
+}
+
+export function postsSubmitting (bool) {
+  return {
+    type: 'POSTS_IS_SUBMITING',
+    isSubmitting: bool
+  }
+}
+
 export function postsFetchDataSuccess (posts) {
   return {
     type: 'POSTS_FETCH_DATA_SUCCESS',
     posts
+  }
+}
+
+export function postSubmitSuccess (post) {
+  return {
+    type: 'POSTS_SUBMIT_SUCCESS',
+    payload: post
+  }
+}
+
+export function postSubmitError (err) {
+  return {
+    type: 'POSTS_SUBMIT_ERROR',
+    payload: err
   }
 }
 
@@ -68,5 +96,23 @@ export function submitPostVote (postId, vote) {
       })
       .catch(err => console.error(`Voting error: ${err}`))
       // ? TODO: posts vote error state, dispatch one
+  }
+}
+
+// thunk addPost
+export function addPost (post) {
+  return (dispatch) => {
+    dispatch(postsSubmitting(true))
+    dispatch(showPostForm(false))
+    axios.post(`http://localhost:3001/posts`, post, config)
+      .then((res) => {
+        dispatch(postsSubmitting(false))
+        return res.data
+      })
+      .then((post) => dispatch(postSubmitSuccess(post)))
+      .catch((err) => {
+        console.error(`submitting a post has errored: ${err}`)
+        dispatch(postSubmitError(err))
+      })
   }
 }

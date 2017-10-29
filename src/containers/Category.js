@@ -2,12 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Post from '../components/Post'
+import PostForm from '../components/PostForm'
 // actions
 import { sortUpdate } from '../actions/action-sort'
 import { postsFetchData } from '../actions/action-posts'
+import { addPost } from '../actions/action-posts'
+import { showPostForm } from '../actions/action-posts'
 // muicss
-import Panel from 'muicss/lib/react/panel'
 import Container from 'muicss/lib/react/container'
+import Button from 'muicss/lib/react/button'
+import Panel from 'muicss/lib/react/panel'
+
 
 class Category extends React.Component {
   componentDidMount () {
@@ -26,15 +31,41 @@ class Category extends React.Component {
         <Container fluid className='Main-container'>
           <Panel className='Category__title'>
             <h2>{title}</h2>
-            <button className='Category__sortButton' onClick={() => dispatch(sortUpdate('timestamp'))}>
+            <Button variant='flat' color='accent' onClick={() => dispatch(showPostForm(true))}>
+              New Post
+            </Button>
+            <Button variant='flat' color='primary' onClick={() => dispatch(sortUpdate('timestamp'))}>
               Newest Posts
-            </button>
-            <button className='Category__sortButton' onClick={() => dispatch(sortUpdate('voteScore'))}>
+            </Button>
+            <Button variant='flat' color='primary' onClick={() => dispatch(sortUpdate('voteScore'))}>
               Highest Voted
-            </button>
+            </Button>
           </Panel>
+          { this.props.postsIsLoading &&
+            <Panel>
+              <p>Loading posts...</p>
+            </Panel>
+          }
+          { this.props.postIsSubmitting &&
+              <Panel>
+                <p>Submitting post...</p>
+              </Panel>
+          }
+          { this.props.postsHasErrored &&
+              <Panel>
+                <p>We're sorry, there's been an error</p>
+                <p>{this.props.postsHasErrored}</p>
+              </Panel>
+          }
+          { this.props.showPostForm &&
+            <Panel>
+              <PostForm onSubmit={(post) => {
+                this.props.dispatch(addPost(post))
+              }} />
+            </Panel>
+          }
           <ul>
-            {posts.map((p) => (
+            { posts.map((p) => (
               <Panel key={p.id}>
                 <Post p={p} voteHandler={this.handleVote} />
               </Panel>
@@ -49,9 +80,10 @@ class Category extends React.Component {
 const mapStateToProps = (state) => {
   return {
     posts: state.posts,
-    // postsIsLoading: state.postsIsLoading,
-    // postsHasErrored: state.postsHasErrored
-    sort: state.sort
+    postsIsLoading: state.postsIsLoading,
+    postsHasErrored: state.postsHasErrored,
+    sort: state.sort,
+    showPostForm: state.showPostForm
   }
 }
 export default connect(mapStateToProps)(Category)

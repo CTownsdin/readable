@@ -6,6 +6,7 @@ import Container from 'muicss/lib/react/container'
 // components
 import Post from '../components/Post'
 import Comment from '../components/Comment'
+// import PostForm from '../components/PostForm'
 // actions
 import { commentsFetchData } from '../actions/action-comments'
 import { postsFetchData } from '../actions/action-posts'
@@ -33,6 +34,10 @@ class PostDetails extends React.Component {
               <Post p={mainPost} />
             }
           </Panel>
+          {/* TODO: Toggle display of form here */}
+          {/* <Panel>
+            <PostForm />
+          </Panel> */}
           <ul className='PostDetails__commentsList'>
             <Panel className='Sub-container'><p><em>...comments</em></p>
               {comments.map((c) => (

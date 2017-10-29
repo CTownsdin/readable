@@ -19,6 +19,36 @@ export function postsHasErrored (state = false, action) {
   }
 }
 
+export function postSubmitError (state = "", action) {
+  switch (action.type) {
+    case 'POSTS_SUBMIT_ERROR':
+      return action.payload
+      
+    default:
+      return state
+  }
+}
+
+export function postIsSubmitting (state = false, action) {
+  switch (action.type) {
+    case 'POSTS_IS_SUBMITTING':
+      return action.isSubmitting
+
+    default:
+      return state
+  }
+}
+
+export function showPostForm (state = false, action) {
+  switch (action.type) {
+    case 'SHOW_POST_FORM':
+      return action.payload
+
+    default:
+      return state
+  }  
+}
+
 export function posts (state = [], action) {
   switch (action.type) {
     case 'POSTS_FETCH_DATA_SUCCESS':
@@ -31,12 +61,18 @@ export function posts (state = [], action) {
       ]
 
     case 'POSTS_VOTE_SUCCESS':
-      const newPost = action.payload
+      const updatedPost = action.payload
       // console.log(`reducing: ${JSON.stringify(newPost, null, 2)}`)
       return [
-        ...state.map((p) => p.id === newPost.id ? newPost : p)
+        ...state.map((p) => p.id === updatedPost.id ? updatedPost : p)
       ]
 
+    case 'POSTS_SUBMIT_SUCCESS':
+      const newPost = action.payload
+      return [
+        ...state, newPost
+      ]
+    
     default:
       return state
   }

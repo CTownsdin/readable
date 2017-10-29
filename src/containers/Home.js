@@ -4,10 +4,7 @@ import { connect } from 'react-redux'
 import '../css/App.css'
 import { postsFetchData } from '../actions/action-posts'
 import Category from './Category'
-// import IoIosFlame from 'react-icons/lib/io/ios-flame'
-// import IoThumbsup from 'react-icons/lib/io/thumbsup'
-// <IoIosFlame />
-// <IoThumbsup />
+
 
 class Home extends Component {
   componentDidMount () {

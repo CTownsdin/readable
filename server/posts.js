@@ -97,7 +97,7 @@ function getAll (token) {
   return new Promise((res) => {
     const posts = getData(token)
     let keys = Object.keys(posts)
-    let filtered_keys = keys.filter(key => !posts.deleted)
+    let filtered_keys = keys.filter(key => !posts[key].deleted)
     res(filtered_keys.map(key => posts[key]))
   })
 }
@@ -114,7 +114,8 @@ function add (token, post) {
       author: post.author,
       category: post.category,
       voteScore: 1,
-      deleted: false
+      deleted: false,
+      commentCount: 0
     }
 
     res(posts[post.id])
@@ -125,40 +126,47 @@ function vote (token, id, option) {
   return new Promise((res) => {
     let posts = getData(token)
     post = posts[id]
-    switch (option) {
-      case 'upVote':
-        post.voteScore = post.voteScore + 1
-        break
-      case 'downVote':
-        post.voteScore = post.voteScore - 1
-        break
-      default:
-        console.log(`posts.vote received incorrect parameter: ${option}`)
+    switch(option) {
+        case "upVote":
+            post.voteScore = post.voteScore + 1
+            break
+        case "downVote":
+            post.voteScore = post.voteScore - 1
+            break
+        default:
+            console.log(`posts.vote received incorrect parameter: ${option}`)
     }
     res(post)
   })
 }
 
 function disable (token, id) {
-  return new Promise((res) => {
-    let posts = getData(token)
-    posts[id].deleted = true
-    res(posts[id])
-  })
+    return new Promise((res) => {
+      let posts = getData(token)
+      posts[id].deleted = true
+      res(posts[id])
+    })
 }
 
 function edit (token, id, post) {
-  return new Promise((res) => {
-    let posts = getData(token)
-    for (prop in post) {
-      posts[id][prop] = post[prop]
-    }
-    res(posts[id])
-  })
+    // console.log(`edit: token: ${token} id: ${id} post: ${JSON.stringify(post, null, 2)}`)
+    return new Promise((res) => {
+        let posts = getData(token)
+        for (prop in post) {
+            posts[id][prop] = post[prop]
+        }
+        res(posts[id])
+    })
+}
+
+function incrementCommentCounter(token, id, count) {
+  const data = getData(token)
+  if (data[id]) {
+    data[id].commentCount += count
+  }
 }
 
 module.exports = {
-  defaultData,
   get,
   getAll,
   getByCategory,
@@ -166,5 +174,6 @@ module.exports = {
   vote,
   disable,
   edit,
-  getAll
+  getAll,
+  incrementCommentCounter
 }

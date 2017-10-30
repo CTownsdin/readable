@@ -2,7 +2,6 @@ import React from 'react'
 import uuidv4 from 'uuid/v4'
 import Button from 'muicss/lib/react/button'
 import PropTypes from 'prop-types'
-
 /*
 {
     "id": "ecf65667-f644-4000-929d-8dcd7de37a2e",
@@ -33,9 +32,9 @@ export default class PostForm extends React.Component {
     this.onCategoryChange = this.onCategoryChange.bind(this)
   }
 
-  onSubmit (e) {
+  onSubmit (e) { // here we validate & show any error, then call props.onSubmit
     e.preventDefault()
-    if (!this.state.title || !this.state.body){
+    if (!this.state.title || !this.state.body || !this.state.author ){
       this.setState(() => ({ error: 'Please provide a title, body, and author name.' }))
     }
     else {
@@ -80,8 +79,6 @@ export default class PostForm extends React.Component {
           value={this.state.author}
           onChange={this.onAuthorChange}
         />
-        {/* // TODO:  if posting, select post category
-        if not posting, then it's a comment, which will be tied to a parent post */}
         <label>
           Select Category:
           <select value={this.state.category} onChange={this.onCategoryChange}>

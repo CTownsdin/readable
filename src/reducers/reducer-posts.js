@@ -49,6 +49,16 @@ export function showPostForm (state = false, action) {
   }  
 }
 
+export function showPostEditForm (state = false, action) {
+  switch (action.type) {
+    case 'SHOW_POST_EDIT_FORM':
+      return action.payload
+
+    default:
+      return state
+  }  
+}
+
 export function posts (state = [], action) {
   switch (action.type) {
     case 'POSTS_FETCH_DATA_SUCCESS':

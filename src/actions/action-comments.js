@@ -14,6 +14,27 @@ export function commentsIsLoading (bool) {
   }
 }
 
+export function showCommentForm (bool) {
+  return {
+    type: 'SHOW_COMMENT_FORM',
+    payload: bool
+  }
+}
+
+export function showCommentEditForm (bool) {
+  return {
+    type: 'SHOW_COMMENT_EDIT_FORM',
+    payload: bool
+  }
+}
+
+export function commentsSubmitting (bool) {
+  return {
+    type: 'COMMENTS_IS_SUBMITING',
+    isSubmitting: bool
+  }
+}
+
 export function commentsFetchDataSuccess (comments) {  /// FIX
   return {
     type: 'COMMENTS_FETCH_DATA_SUCCESS',
@@ -21,12 +42,26 @@ export function commentsFetchDataSuccess (comments) {  /// FIX
   }
 }
 
-export function commentsRemoveCommne (index) {  // TODO: setup delete/remove a comment
+export function commentSubmitSuccess (comment) {
   return {
-    type: 'COMMENTS_REMOVE_COMMENT',
-    index
+    type: 'COMMENTS_SUBMIT_SUCCESS',
+    payload: comment
   }
 }
+
+export function commentSubmitError (err) {
+  return {
+    type: 'COMMENTS_SUBMIT_ERROR',
+    payload: err
+  }
+}
+
+// export function commentsRemoveCommne (index) {  // TODO: setup delete/remove a comment
+//   return {
+//     type: 'COMMENTS_REMOVE_COMMENT',
+//     index
+//   }
+// }
 
 const config = {
   headers: {
@@ -68,5 +103,23 @@ export function submitCommentVote (commentId, vote) {
       })
       .catch(err => console.error(`Voting error: ${err}`))
       // ? TODO: posts vote error state, dispatch one
+  }
+}
+
+// thunk
+export function addComment (comment) {
+  return (dispatch) => {
+    dispatch(commentsSubmitting(true))
+    dispatch(showCommentForm(false))
+    axios.post(`http://localhost:3001/comments`, comment, config)
+      .then((res) => {
+        dispatch(commentsSubmitting(false))
+        return res.data
+      })
+      .then((comment) => dispatch(commentSubmitSuccess(comment)))
+      .catch((err) => {
+        console.error(`submitting a comment has errored: ${err}`)
+        dispatch(commentSubmitError(err))
+      })
   }
 }

@@ -19,6 +19,46 @@ export function commentsHasErrored (state = false, action) {
   }
 }
 
+export function showCommentForm (state = false, action) {
+  switch (action.type) {
+    case 'SHOW_COMMENT_FORM':
+      return action.payload
+
+    default:
+      return state
+  }  
+}
+
+export function showCommentEditForm (state = false, action) {
+  switch (action.type) {
+    case 'SHOW_COMMENT_EDIT_FORM':
+      return action.payload
+
+    default:
+      return state
+  }  
+}
+
+export function commentsIsSubmitting (state = false, action) {
+  switch (action.type) {
+    case 'COMMENTS_IS_SUBMITTING':
+      return action.isSubmitting
+
+    default:
+      return state
+  }
+}
+
+export function commentSubmitError (state = "", action) {
+  switch (action.type) {
+    case 'COMMENTS_SUBMIT_ERROR':
+      return action.payload
+      
+    default:
+      return state
+  }
+}
+
 export function comments (state = [], action) {
   switch (action.type) {
     case 'COMMENTS_FETCH_DATA_SUCCESS':
@@ -31,10 +71,17 @@ export function comments (state = [], action) {
       ]
 
     case 'COMMENTS_VOTE_SUCCESS':
+      const updatedComment = action.payload
+      return [
+        ...state.map((c) => c.id === updatedComment.id ? updatedComment : c)
+      ]
+
+    case 'COMMENTS_SUBMIT_SUCCESS':
       const newComment = action.payload
       return [
-        ...state.map((c) => c.id === newComment.id ? newComment : c)
+        ...state, newComment
       ]
+
 
     default:
       return state

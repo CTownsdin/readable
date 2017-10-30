@@ -1,4 +1,5 @@
 const clone = require('clone')
+const posts = require('./posts')
 
 let db = {}
 
@@ -78,6 +79,7 @@ function add (token, comment) {
       parentDeleted: false
     }
 
+    posts.incrementCommentCounter(token, comment.parentId, 1)
     res(comments[comment.id])
   })
 }
@@ -86,46 +88,47 @@ function vote (token, id, option) {
   return new Promise((res) => {
     let comments = getData(token)
     comment = comments[id]
-    switch (option) {
-      case 'upVote':
-        comment.voteScore = comment.voteScore + 1
-        break
-      case 'downVote':
-        comment.voteScore = comment.voteScore - 1
-        break
-      default:
-        console.log(`comments.vote received incorrect parameter: ${option}`)
+    switch(option) {
+        case "upVote":
+            comment.voteScore = comment.voteScore + 1
+            break
+        case "downVote":
+            comment.voteScore = comment.voteScore - 1
+            break
+        default:
+            console.log(`comments.vote received incorrect parameter: ${option}`)
     }
     res(comment)
   })
 }
 
 function disableByParent (token, post) {
-  return new Promise((res) => {
-    let comments = getData(token)
-    keys = Object.keys(comments)
-    filtered_keys = keys.filter(key => comments[key].parentId === post.id)
-    filtered_keys.forEach(key => comments[key].parentDeleted = true)
-    res(post)
-  })
+    return new Promise((res) => {
+        let comments = getData(token)
+        keys = Object.keys(comments)
+        filtered_keys = keys.filter(key => comments[key].parentId === post.id)
+        filtered_keys.forEach(key => comments[key].parentDeleted = true)
+        res(post)
+    })
 }
 
 function disable (token, id) {
-  return new Promise((res) => {
-    let comments = getData(token)
-    comments[id].deleted = true
-    res(comments[id])
-  })
+    return new Promise((res) => {
+      let comments = getData(token)
+      comments[id].deleted = true
+      posts.incrementCommentCounter(token, comments[id].parentId, -1)
+      res(comments[id])
+    })
 }
 
 function edit (token, id, comment) {
-  return new Promise((res) => {
-    let comments = getData(token)
-    for (prop in comment) {
-      comments[id][prop] = comment[prop]
-    }
-    res(comments[id])
-  })
+    return new Promise((res) => {
+        let comments = getData(token)
+        for (prop in comment) {
+            comments[id][prop] = comment[prop]
+        }
+        res(comments[id])
+    })
 }
 
 module.exports = {

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import Voter from './CommentVoter'
 import Row from 'muicss/lib/react/row'
 import Col from 'muicss/lib/react/col'
+import Button from 'muicss/lib/react/button'
 
-// note: very similar to Post, but electing to keep separate
 
 const Comment = ({ c }) => (
   <div className='comment'>

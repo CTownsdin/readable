@@ -208,15 +208,16 @@ app.post('/posts/:id', bodyParser.json(), (req, res) => {
 })
 
 app.put('/posts/:id', bodyParser.json(), (req, res) => {
+  // console.log(`updating post: ${req.params.id}`)
   posts.edit(req.token, req.params.id, req.body)
       .then(
         (data) => res.send(data),
-          (error) => {
-            console.error(error)
-            res.status(500).send({
-              error: 'There was an error.'
-            })
-          }
+        (error) => {
+          console.error(error)
+          res.status(500).send({
+            error: 'There was an error.'
+          })
+        }
       )
 })
 

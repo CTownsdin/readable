@@ -21,6 +21,13 @@ export function showPostForm (bool) {
   }
 }
 
+export function showPostEditForm (bool) {
+  return {
+    type: 'SHOW_POST_EDIT_FORM',
+    payload: bool
+  }
+}
+
 export function postsSubmitting (bool) {
   return {
     type: 'POSTS_IS_SUBMITING',
@@ -99,7 +106,7 @@ export function submitPostVote (postId, vote) {
   }
 }
 
-// thunk addPost
+// thunk
 export function addPost (post) {
   return (dispatch) => {
     dispatch(postsSubmitting(true))
@@ -112,6 +119,24 @@ export function addPost (post) {
       .then((post) => dispatch(postSubmitSuccess(post)))
       .catch((err) => {
         console.error(`submitting a post has errored: ${err}`)
+        dispatch(postSubmitError(err))
+      })
+  }
+}
+
+// thunk
+export function editPost (post, postId) {
+  return (dispatch) => {
+    dispatch(postsSubmitting(true))
+    dispatch(showPostEditForm(false))
+    axios.put(`http://localhost:3001/posts/${postId}`, post, config)
+      .then((res) => {
+        dispatch(postsSubmitting(false))
+        return res.data
+      })
+      .then((post) => dispatch(postSubmitSuccess(post)))
+      .catch((err) => {
+        console.error(`Updating a post has errored: ${err}`)
         dispatch(postSubmitError(err))
       })
   }

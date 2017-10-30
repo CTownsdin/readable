@@ -3,13 +3,19 @@ import { connect } from 'react-redux'
 // muicss
 import Panel from 'muicss/lib/react/panel'
 import Container from 'muicss/lib/react/container'
+import Button from 'muicss/lib/react/button'
 // components
 import Post from '../components/Post'
 import Comment from '../components/Comment'
-// import PostForm from '../components/PostForm'
+import PostForm from '../components/PostForm'
+import CommentForm from '../components/CommentForm'
 // actions
 import { commentsFetchData } from '../actions/action-comments'
+import { showCommentForm } from '../actions/action-comments'
+import { addComment } from '../actions/action-comments'
 import { postsFetchData } from '../actions/action-posts'
+import { showPostEditForm } from '../actions/action-posts'
+import { editPost } from '../actions/action-posts'
 // import { sortUpdate } from '../actions/action-sort'
 
 class PostDetails extends React.Component {
@@ -30,17 +36,52 @@ class PostDetails extends React.Component {
       <div>
         <Container fluid className='Main-container'>
           <Panel style={{ marginTop: '0.5em' }}>
-            {mainPost &&
-              <Post p={mainPost} />
+            { mainPost &&
+              <div>
+                <Post p={mainPost} />
+                <Button className='PostDetails__editButton'
+                  onClick={() => this.props.dispatch(showPostEditForm(true))}
+                >Edit this post</Button>
+              </div>
             }
           </Panel>
-          {/* TODO: Toggle display of form here */}
-          {/* <Panel>
-            <PostForm />
-          </Panel> */}
           <ul className='PostDetails__commentsList'>
-            <Panel className='Sub-container'><p><em>...comments</em></p>
-              {comments.map((c) => (
+            { this.props.commentsIsLoading &&
+              <p>Loading comments...</p>
+            }
+            { this.props.commentsHasErrored &&
+              <div>
+                <p>We're sorry, there's been an error.</p>
+                <p>{this.props.commentsHasErrored}</p>
+              </div>
+            }
+            { this.props.showPostEditForm &&
+              <Panel>
+                <PostForm post={mainPost} 
+                  onSubmit={(post) => {
+                    this.props.dispatch(editPost(post, mainPost.id))
+                    this.props.history.push('/')
+                  }}
+                />
+              </Panel>
+            }
+
+            <Panel className='PostDetails__commentsPanel'>
+              <p>
+                <em>...comments</em>
+                <Button className='PostDetails__commentButton'
+                  onClick={() => this.props.dispatch(showCommentForm(true))}
+                >ADD A COMMENT</Button>
+                </p>
+                { this.props.showCommentForm &&   
+                  <Panel>
+                    <CommentForm 
+                      onSubmit={(comment) => this.props.dispatch(addComment(comment))} 
+                      parentPost={mainPost}
+                    />
+                  </Panel>
+                }
+              { comments.map((c) => (
                 <Panel key={c.id}>
                   <Comment c={c} />
                 </Panel>
@@ -58,6 +99,9 @@ const mapStateToProps = (state) => {
     comments: state.comments,
     commentsIsLoading: state.commentsIsLoading,
     commentsHasErrored: state.commentsHasErrored,
+    showPostEditForm: state.showPostEditForm,
+    showCommentForm: state.showCommentForm,
+    showCommentEditForm: state.showCommentEditForm,
     sort: state.sort,
     posts: state.posts
   }

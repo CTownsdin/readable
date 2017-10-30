@@ -3,23 +3,35 @@ import {
   postsIsLoading, 
   postsHasErrored, 
   postSubmitError, 
-  postIsSubmitting, 
-  showPostForm, 
+  postIsSubmitting,
+  showPostForm,
+  showPostEditForm,
   posts 
 } from './reducer-posts'
-import { comments, commentsIsLoading, commentsHasErrored } from './reducer-comments'
+import { 
+  commentsIsLoading, 
+  commentsHasErrored,
+  showCommentForm,
+  showCommentEditForm,
+  comments
+} from './reducer-comments'
 import { sort } from './reducer-sort'
 
 const rootReducer = combineReducers({
   postsIsLoading, 
   postsHasErrored, 
   postSubmitError, 
-  postIsSubmitting, 
-  showPostForm, 
+  postIsSubmitting,
+  showPostForm,
+  showPostEditForm,
   posts,
-  comments,
-  commentsIsLoading,
+
+  commentsIsLoading, 
   commentsHasErrored,
+  showCommentForm,
+  showCommentEditForm,
+  comments,
+  
   sort
 })
 

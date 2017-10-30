@@ -41,7 +41,7 @@ ul { padding: 0 }
   background-color: darkorange
 }
 
-.Sub-container {
+.PostDetails__commentsPanel {
   background-color: lightgrey
 }
 
@@ -52,4 +52,14 @@ ul { padding: 0 }
 .Category__title {
   margin-top: 12px;
   background-color: lightgrey;
+}
+
+.PostDetails__editButton {
+  float: right
+}
+
+.PostDetails__commentButton {
+  float: right;
+  position: relative;
+  top: -17px;
 }

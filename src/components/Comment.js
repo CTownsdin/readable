@@ -5,7 +5,7 @@ import Row from 'muicss/lib/react/row'
 import Col from 'muicss/lib/react/col'
 import Button from 'muicss/lib/react/button'
 
-const Comment = ({ c, removeComment }) => (
+const Comment = ({ c, removeComment, editComment }) => (
   <div className='comment'>
     <Row>
       <Col md='1'>
@@ -18,6 +18,7 @@ const Comment = ({ c, removeComment }) => (
     </Row>
     <div className='Comment__timestamp'>
         Posted: {`${new Date(c.timestamp)}`}
+      <Button onClick={() => editComment(c.id)}>edit this comment</Button>
       <Button onClick={() => removeComment(c.id)}>remove comment</Button>
     </div>
   </div>

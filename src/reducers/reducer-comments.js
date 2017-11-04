@@ -29,10 +29,10 @@ export function showCommentForm (state = false, action) {
   }
 }
 
-export function showCommentEditForm (state = false, action) {
+export function showCommentEditForm (state = {show: false, id: ''}, action) {
   switch (action.type) {
     case 'SHOW_COMMENT_EDIT_FORM':
-      return action.payload
+      return { show: action.payload, id: action.commentId }
 
     default:
       return state
@@ -81,6 +81,12 @@ export function comments (state = [], action) {
       const newComment = action.payload
       return [
         ...state, newComment
+      ]
+
+    case 'COMMENTS_EDIT_SUCCESS':
+      const editedComment = action.payload
+      return [
+        ...state.map((c) => c.id === editedComment.id ? editedComment : c)
       ]
 
     default:

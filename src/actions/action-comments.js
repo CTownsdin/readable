@@ -21,10 +21,11 @@ export function showCommentForm (bool) {
   }
 }
 
-export function showCommentEditForm (bool) {
+export function showCommentEditForm (bool, commentId) {
   return {
     type: 'SHOW_COMMENT_EDIT_FORM',
-    payload: bool
+    payload: bool,
+    commentId
   }
 }
 
@@ -35,7 +36,7 @@ export function commentsSubmitting (bool) {
   }
 }
 
-export function commentsFetchDataSuccess (comments) {  /// FIX
+export function commentsFetchDataSuccess (comments) {
   return {
     type: 'COMMENTS_FETCH_DATA_SUCCESS',
     comments
@@ -45,6 +46,13 @@ export function commentsFetchDataSuccess (comments) {  /// FIX
 export function commentSubmitSuccess (comment) {
   return {
     type: 'COMMENTS_SUBMIT_SUCCESS',
+    payload: comment
+  }
+}
+
+export function commentEditSuccess (comment) {
+  return {
+    type: 'COMMENT_EDIT_SUCCESS',
     payload: comment
   }
 }
@@ -132,6 +140,23 @@ export function deleteComment (commentId) {
       })
       .catch((err) => {
         console.error(`error deleting a comment: ${err}`)
+      })
+  }
+}
+
+export function editComment (comment, commentId) {
+  return (dispatch) => {
+    dispatch(commentsSubmitting(true))
+    dispatch(showCommentEditForm(false))
+    axios.put(`http://localhost:3001/comments/${commentId}`, comment, config)
+      .then((res) => {
+        dispatch(commentsSubmitting(false))
+        return res.data
+      })
+      .then((comment) => dispatch(commentEditSuccess(comment)))
+      .catch((err) => {
+        console.error(`Updating a comment has errored: ${err}`)
+        dispatch(commentSubmitError(err))
       })
   }
 }

@@ -11,7 +11,7 @@ export default class CommentForm extends React.Component {
       timestamp: props.comment ? props.comment.timestamp : Date.now(),
       body: props.comment ? props.comment.body : '',
       author: props.comment ? props.comment.author : '',
-      parentId: props.parentPost ? props.parentPost.id : '',
+      parentId: props.comment ? props.comment.parentId : '',
       error: ''
     }
     this.onSubmit = this.onSubmit.bind(this)
@@ -25,6 +25,7 @@ export default class CommentForm extends React.Component {
       this.setState(() => ({ error: 'Please provide a body and author name.' }))
     } else {
       this.setState(() => ({ error: '' }))
+      // console.log(`commit submit w component state: ${JSON.stringify(this.state, null, 2)}`)
       const { id, timestamp, body, author, parentId } = this.state
       this.props.onSubmit({ id, timestamp, body, author, parentId })
     }
@@ -60,6 +61,6 @@ export default class CommentForm extends React.Component {
 }
 
 CommentForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  parentPost: PropTypes.object.isRequired
+  onSubmit: PropTypes.func.isRequired
+  // parentPost: PropTypes.object.isRequired
 }

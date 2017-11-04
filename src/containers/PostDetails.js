@@ -10,8 +10,12 @@ import Comment from '../components/Comment'
 import PostForm from '../components/PostForm'
 import CommentForm from '../components/CommentForm'
 // actions
-import { commentsFetchData, showCommentForm, addComment, deleteComment } from '../actions/action-comments'
-import { postsFetchData, showPostEditForm, editPost, deletePost } from '../actions/action-posts'
+import {
+  commentsFetchData, addComment, showCommentEditForm, editComment, deleteComment, showCommentForm
+} from '../actions/action-comments'
+import {
+  postsFetchData, showPostEditForm, editPost, deletePost
+} from '../actions/action-posts'
 
 // import { sortUpdate } from '../actions/action-sort'
 
@@ -20,6 +24,7 @@ class PostDetails extends React.Component {
     super(props)
     this.handleRemovePost = this.handleRemovePost.bind(this)
     this.handleRemoveComment = this.handleRemoveComment.bind(this)
+    this.handleEditComment = this.handleEditComment.bind(this)
   }
 
   componentDidMount () {
@@ -34,6 +39,10 @@ class PostDetails extends React.Component {
 
   handleRemoveComment (commentId) {
     this.props.dispatch(deleteComment(commentId))
+  }
+
+  handleEditComment (commentId) {
+    this.props.dispatch(showCommentEditForm(true, commentId))
   }
 
   render () {
@@ -76,6 +85,17 @@ class PostDetails extends React.Component {
                 />
               </Panel>
             }
+            { this.props.showCommentEditForm.show &&
+              <Panel>
+                <h2>edit the comment...</h2>
+                <CommentForm comment={this.props.commentForEdit}
+                  onSubmit={(comment) => {
+                    this.props.dispatch(editComment(comment, this.props.commentForEditId))
+                    this.props.history.push('/')
+                  }}
+                />
+              </Panel>
+            }
 
             <Panel className='PostDetails__commentsPanel'>
               <p>
@@ -94,7 +114,10 @@ class PostDetails extends React.Component {
                 }
               { comments.map((c) => (
                 <Panel key={c.id}>
-                  <Comment c={c} removeComment={this.handleRemoveComment} />
+                  <Comment c={c}
+                    removeComment={this.handleRemoveComment}
+                    editComment={this.handleEditComment}
+                  />
                 </Panel>
               ))}
             </Panel>
@@ -106,6 +129,7 @@ class PostDetails extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  const commentForEditId = state.showCommentEditForm.id
   return {
     comments: state.comments,
     commentsIsLoading: state.commentsIsLoading,
@@ -113,6 +137,8 @@ const mapStateToProps = (state) => {
     showPostEditForm: state.showPostEditForm,
     showCommentForm: state.showCommentForm,
     showCommentEditForm: state.showCommentEditForm,
+    commentForEdit: state.comments.find(c => c.id === commentForEditId),
+    commentForEditId,
     sort: state.sort,
     posts: state.posts
   }

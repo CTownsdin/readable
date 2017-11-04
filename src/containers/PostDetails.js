@@ -10,7 +10,7 @@ import Comment from '../components/Comment'
 import PostForm from '../components/PostForm'
 import CommentForm from '../components/CommentForm'
 // actions
-import { commentsFetchData, showCommentForm, addComment } from '../actions/action-comments'
+import { commentsFetchData, showCommentForm, addComment, deleteComment } from '../actions/action-comments'
 import { postsFetchData, showPostEditForm, editPost, deletePost } from '../actions/action-posts'
 
 // import { sortUpdate } from '../actions/action-sort'
@@ -19,6 +19,7 @@ class PostDetails extends React.Component {
   constructor (props) {
     super(props)
     this.handleRemovePost = this.handleRemovePost.bind(this)
+    this.handleRemoveComment = this.handleRemoveComment.bind(this)
   }
 
   componentDidMount () {
@@ -29,6 +30,10 @@ class PostDetails extends React.Component {
 
   handleRemovePost (postId) {
     this.props.dispatch(deletePost(postId))
+  }
+
+  handleRemoveComment (commentId) {
+    this.props.dispatch(deleteComment(commentId))
   }
 
   render () {
@@ -89,7 +94,7 @@ class PostDetails extends React.Component {
                 }
               { comments.map((c) => (
                 <Panel key={c.id}>
-                  <Comment c={c} />
+                  <Comment c={c} removeComment={this.handleRemoveComment} />
                 </Panel>
               ))}
             </Panel>

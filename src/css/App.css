@@ -23,11 +23,6 @@ body {
 /* override user agent stylesheet */
 ul { padding: 0 }
 
-.Post__timestamp {
-  text-align: center;
-  font-size: x-small;
-}
-
 .Comment__timestamp {
   text-align: center;
   font-size: x-small;

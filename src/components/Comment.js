@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import Voter from './CommentVoter'
 import Row from 'muicss/lib/react/row'
 import Col from 'muicss/lib/react/col'
-// import Button from 'muicss/lib/react/button'
+import Button from 'muicss/lib/react/button'
 
-const Comment = ({ c }) => (
+const Comment = ({ c, removeComment }) => (
   <div className='comment'>
     <Row>
       <Col md='1'>
@@ -17,8 +17,8 @@ const Comment = ({ c }) => (
       </Col>
     </Row>
     <div className='Comment__timestamp'>
-      {/* <Button onClick={() => alert('TODO')}>Edit Comment</Button> */}
         Posted: {`${new Date(c.timestamp)}`}
+      <Button onClick={() => removeComment(c.id)}>remove comment</Button>
     </div>
   </div>
 )

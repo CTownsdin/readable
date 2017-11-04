@@ -65,9 +65,10 @@ export function comments (state = [], action) {
       return action.comments
 
     case 'COMMENTS_REMOVE_COMMENT':
+      const index = state.findIndex(c => c.id === action.commentId)
       return [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
+        ...state.slice(0, index),
+        ...state.slice(index + 1)
       ]
 
     case 'COMMENTS_VOTE_SUCCESS':

@@ -23,8 +23,7 @@ const Post = ({ p, voteHandler, removePost }) => (
       </Col>
     </Row>
     <div>
-      <span className='Post__timestamp'>Posted: {`${new Date(p.timestamp)}`}</span>
-      {/* <span><Button onClick={(e) => console.log(p.id)}>delete</Button></span> */}
+      <span>Posted: {`${new Date(p.timestamp)}`}</span>
       <span><Button onClick={() => removePost(p.id)}>remove post</Button></span>
     </div>
   </div>

@@ -56,12 +56,12 @@ export function commentSubmitError (err) {
   }
 }
 
-// export function commentsRemoveCommne (index) {  // TODO: setup delete/remove a comment
-//   return {
-//     type: 'COMMENTS_REMOVE_COMMENT',
-//     index
-//   }
-// }
+export function commentsRemoveComment (commentId) {
+  return {
+    type: 'COMMENTS_REMOVE_COMMENT',
+    commentId
+  }
+}
 
 const config = {
   headers: {
@@ -120,6 +120,18 @@ export function addComment (comment) {
       .catch((err) => {
         console.error(`submitting a comment has errored: ${err}`)
         dispatch(commentSubmitError(err))
+      })
+  }
+}
+
+export function deleteComment (commentId) {
+  return (dispatch) => {
+    axios.delete(`http://localhost:3001/comments/${commentId}`, config)
+      .then((res) => {
+        dispatch(commentsRemoveComment(commentId))
+      })
+      .catch((err) => {
+        console.error(`error deleting a comment: ${err}`)
       })
   }
 }

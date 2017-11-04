@@ -34,15 +34,13 @@ export default class PostForm extends React.Component {
 
   onSubmit (e) { // here we validate & show any error, then call props.onSubmit
     e.preventDefault()
-    if (!this.state.title || !this.state.body || !this.state.author ){
+    if (!this.state.title || !this.state.body || !this.state.author) {
       this.setState(() => ({ error: 'Please provide a title, body, and author name.' }))
-    }
-    else {
+    } else {
       this.setState(() => ({ error: '' }))
-      const { id, timestamp, title, body, author, category } = this.state;
+      const { id, timestamp, title, body, author, category } = this.state
       this.props.onSubmit({ id, timestamp, title, body, author, category })
     }
-
   }
   onTitleChange (e) {
     const title = e.target.value
@@ -94,7 +92,6 @@ export default class PostForm extends React.Component {
     )
   }
 }
-
 
 PostForm.propTypes = {
   onSubmit: PropTypes.func.isRequired

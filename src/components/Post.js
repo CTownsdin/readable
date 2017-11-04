@@ -4,8 +4,9 @@ import Voter from './PostVoter'
 import { Link } from 'react-router-dom'
 import Row from 'muicss/lib/react/row'
 import Col from 'muicss/lib/react/col'
+import Button from 'muicss/lib/react/button'
 
-const Post = ({ p, voteHandler }) => (
+const Post = ({ p, voteHandler, removePost }) => (
   <div className='post'>
     <Row>
       <Col md='1'>
@@ -21,7 +22,11 @@ const Post = ({ p, voteHandler }) => (
         </div>
       </Col>
     </Row>
-    <div className='Post__timestamp'>Posted: {`${new Date(p.timestamp)}`}</div>
+    <div>
+      <span className='Post__timestamp'>Posted: {`${new Date(p.timestamp)}`}</span>
+      {/* <span><Button onClick={(e) => console.log(p.id)}>delete</Button></span> */}
+      <span><Button onClick={() => removePost(p.id)}>remove post</Button></span>
+    </div>
   </div>
 )
 

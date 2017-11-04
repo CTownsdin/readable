@@ -5,7 +5,6 @@ import '../css/App.css'
 import { postsFetchData } from '../actions/action-posts'
 import Category from './Category'
 
-
 class Home extends Component {
   componentDidMount () {
     this.props.dispatch(postsFetchData('http://localhost:3001/posts'))

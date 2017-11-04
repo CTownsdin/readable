@@ -5,14 +5,11 @@ import Post from '../components/Post'
 import PostForm from '../components/PostForm'
 // actions
 import { sortUpdate } from '../actions/action-sort'
-import { postsFetchData } from '../actions/action-posts'
-import { addPost } from '../actions/action-posts'
-import { showPostForm } from '../actions/action-posts'
+import { postsFetchData, addPost, showPostForm } from '../actions/action-posts'
 // muicss
 import Container from 'muicss/lib/react/container'
 import Button from 'muicss/lib/react/button'
 import Panel from 'muicss/lib/react/panel'
-
 
 class Category extends React.Component {
   componentDidMount () {
@@ -47,15 +44,15 @@ class Category extends React.Component {
             </Panel>
           }
           { this.props.postIsSubmitting &&
-              <Panel>
-                <p>Submitting post...</p>
-              </Panel>
+          <Panel>
+            <p>Submitting post...</p>
+          </Panel>
           }
           { this.props.postsHasErrored &&
-              <Panel>
-                <p>We're sorry, there's been an error</p>
-                <p>{this.props.postsHasErrored}</p>
-              </Panel>
+          <Panel>
+            <p>We're sorry, there's been an error</p>
+            <p>{this.props.postsHasErrored}</p>
+          </Panel>
           }
           { this.props.showPostForm &&
             <Panel>

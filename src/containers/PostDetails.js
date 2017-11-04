@@ -10,19 +10,25 @@ import Comment from '../components/Comment'
 import PostForm from '../components/PostForm'
 import CommentForm from '../components/CommentForm'
 // actions
-import { commentsFetchData } from '../actions/action-comments'
-import { showCommentForm } from '../actions/action-comments'
-import { addComment } from '../actions/action-comments'
-import { postsFetchData } from '../actions/action-posts'
-import { showPostEditForm } from '../actions/action-posts'
-import { editPost } from '../actions/action-posts'
+import { commentsFetchData, showCommentForm, addComment } from '../actions/action-comments'
+import { postsFetchData, showPostEditForm, editPost, deletePost } from '../actions/action-posts'
+
 // import { sortUpdate } from '../actions/action-sort'
 
 class PostDetails extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleRemovePost = this.handleRemovePost.bind(this)
+  }
+
   componentDidMount () {
     const { postId } = this.props.match.params
     if (this.props.posts.length === 0) this.props.dispatch(postsFetchData('http://localhost:3001/posts')) // deep linking
     this.props.dispatch(commentsFetchData(`http://localhost:3001/posts/${postId}/comments`))
+  }
+
+  handleRemovePost (postId) {
+    this.props.dispatch(deletePost(postId))
   }
 
   render () {
@@ -38,7 +44,7 @@ class PostDetails extends React.Component {
           <Panel style={{ marginTop: '0.5em' }}>
             { mainPost &&
               <div>
-                <Post p={mainPost} />
+                <Post p={mainPost} removePost={this.handleRemovePost} />
                 <Button className='PostDetails__editButton'
                   onClick={() => this.props.dispatch(showPostEditForm(true))}
                 >Edit this post</Button>
@@ -57,7 +63,7 @@ class PostDetails extends React.Component {
             }
             { this.props.showPostEditForm &&
               <Panel>
-                <PostForm post={mainPost} 
+                <PostForm post={mainPost}
                   onSubmit={(post) => {
                     this.props.dispatch(editPost(post, mainPost.id))
                     this.props.history.push('/')
@@ -72,14 +78,14 @@ class PostDetails extends React.Component {
                 <Button className='PostDetails__commentButton'
                   onClick={() => this.props.dispatch(showCommentForm(true))}
                 >ADD A COMMENT</Button>
-                </p>
-                { this.props.showCommentForm &&   
-                  <Panel>
-                    <CommentForm 
-                      onSubmit={(comment) => this.props.dispatch(addComment(comment))} 
-                      parentPost={mainPost}
+              </p>
+              { this.props.showCommentForm &&
+              <Panel>
+                <CommentForm
+                  onSubmit={(comment) => this.props.dispatch(addComment(comment))}
+                  parentPost={mainPost}
                     />
-                  </Panel>
+              </Panel>
                 }
               { comments.map((c) => (
                 <Panel key={c.id}>

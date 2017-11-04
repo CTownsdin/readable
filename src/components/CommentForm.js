@@ -3,32 +3,6 @@ import uuidv4 from 'uuid/v4'
 import Button from 'muicss/lib/react/button'
 import PropTypes from 'prop-types'
 
-
-/*  Comment schema
-{
-    "id": "894tuq4ut84ut8v4t8wun89g",
-    "parentId": "52c56115-a660-4a56-87f0-3b264e2ba0df",
-    "timestamp": 1468166872634,
-    "body": "Hi there! I like react too! Comment.",
-    "author": "yuppers",
-    "voteScore": 9,
-    "deleted": false,
-    "parentDeleted": false
-}
-*/
-
-/*
-POST /comments
-    Add a comment to a post
-
-  PARAMS:
-    id: Any unique ID. As with posts, UUID is probably the best here.
-    timestamp: timestamp. Get this however you want.
-    body: String
-    author: String
-    parentId: Should match a post id in the database.
-*/
-
 export default class CommentForm extends React.Component {
   constructor (props) {
     super(props)
@@ -47,12 +21,11 @@ export default class CommentForm extends React.Component {
 
   onSubmit (e) { // here we validate & show any error, then call props.onSubmit
     e.preventDefault()
-    if (!this.state.body || !this.state.author){
+    if (!this.state.body || !this.state.author) {
       this.setState(() => ({ error: 'Please provide a body and author name.' }))
-    }
-    else {
+    } else {
       this.setState(() => ({ error: '' }))
-      const { id, timestamp, body, author, parentId } = this.state;
+      const { id, timestamp, body, author, parentId } = this.state
       this.props.onSubmit({ id, timestamp, body, author, parentId })
     }
   }
@@ -85,7 +58,6 @@ export default class CommentForm extends React.Component {
     )
   }
 }
-
 
 CommentForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,

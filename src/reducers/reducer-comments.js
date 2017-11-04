@@ -26,7 +26,7 @@ export function showCommentForm (state = false, action) {
 
     default:
       return state
-  }  
+  }
 }
 
 export function showCommentEditForm (state = false, action) {
@@ -36,7 +36,7 @@ export function showCommentEditForm (state = false, action) {
 
     default:
       return state
-  }  
+  }
 }
 
 export function commentsIsSubmitting (state = false, action) {
@@ -49,11 +49,11 @@ export function commentsIsSubmitting (state = false, action) {
   }
 }
 
-export function commentSubmitError (state = "", action) {
+export function commentSubmitError (state = '', action) {
   switch (action.type) {
     case 'COMMENTS_SUBMIT_ERROR':
       return action.payload
-      
+
     default:
       return state
   }
@@ -81,7 +81,6 @@ export function comments (state = [], action) {
       return [
         ...state, newComment
       ]
-
 
     default:
       return state

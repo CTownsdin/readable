@@ -56,10 +56,10 @@ export function postSubmitError (err) {
   }
 }
 
-export function postsRemovePost (index) {  // TODO: setup delete/remove a post
+export function postsRemovePost (postId) {
   return {
     type: 'POSTS_REMOVE_POST',
-    index
+    postId
   }
 }
 
@@ -118,11 +118,30 @@ export function addPost (post) {
       })
       .then((post) => dispatch(postSubmitSuccess(post)))
       .catch((err) => {
-        console.error(`submitting a post has errored: ${err}`)
+        console.error(`error submitting a post: ${err}`)
         dispatch(postSubmitError(err))
       })
   }
 }
+
+export function deletePost (postId) {
+  return (dispatch) => {
+    axios.delete(`http://localhost:3001/posts/${postId}`, config)
+      .then((res) => {
+        dispatch(postsRemovePost(postId))
+      })
+      .catch((err) => {
+        console.error(`error deleting a post: ${err}`)
+      })
+  }
+}
+
+// deleting a post
+// call axios.delete
+// then on success, dispatch postsRemovePost ? to remove it from state?
+  // postsRemovePost wants the index of the post, what if it used the id instead.
+    // use the id instead
+      // try postsRemovePost by id, setup and test, then we'll call it when delete successful
 
 // thunk
 export function editPost (post, postId) {

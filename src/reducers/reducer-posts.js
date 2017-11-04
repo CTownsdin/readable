@@ -19,11 +19,11 @@ export function postsHasErrored (state = false, action) {
   }
 }
 
-export function postSubmitError (state = "", action) {
+export function postSubmitError (state = '', action) {
   switch (action.type) {
     case 'POSTS_SUBMIT_ERROR':
       return action.payload
-      
+
     default:
       return state
   }
@@ -46,7 +46,7 @@ export function showPostForm (state = false, action) {
 
     default:
       return state
-  }  
+  }
 }
 
 export function showPostEditForm (state = false, action) {
@@ -56,7 +56,7 @@ export function showPostEditForm (state = false, action) {
 
     default:
       return state
-  }  
+  }
 }
 
 export function posts (state = [], action) {
@@ -65,9 +65,10 @@ export function posts (state = [], action) {
       return action.posts
 
     case 'POSTS_REMOVE_POST':
+      const index = state.findIndex(p => p.id === action.postId)
       return [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
+        ...state.slice(0, index),
+        ...state.slice(index + 1)
       ]
 
     case 'POSTS_VOTE_SUCCESS':
@@ -82,7 +83,7 @@ export function posts (state = [], action) {
       return [
         ...state, newPost
       ]
-    
+
     default:
       return state
   }

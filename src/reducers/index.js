@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux'
-import { 
-  postsIsLoading, 
-  postsHasErrored, 
-  postSubmitError, 
+import {
+  postsIsLoading,
+  postsHasErrored,
+  postSubmitError,
   postIsSubmitting,
   showPostForm,
   showPostEditForm,
-  posts 
+  posts
 } from './reducer-posts'
-import { 
-  commentsIsLoading, 
+import {
+  commentsIsLoading,
   commentsHasErrored,
   showCommentForm,
   showCommentEditForm,
@@ -18,20 +18,20 @@ import {
 import { sort } from './reducer-sort'
 
 const rootReducer = combineReducers({
-  postsIsLoading, 
-  postsHasErrored, 
-  postSubmitError, 
+  postsIsLoading,
+  postsHasErrored,
+  postSubmitError,
   postIsSubmitting,
   showPostForm,
   showPostEditForm,
   posts,
 
-  commentsIsLoading, 
+  commentsIsLoading,
   commentsHasErrored,
   showCommentForm,
   showCommentEditForm,
   comments,
-  
+
   sort
 })
 

@@ -4,33 +4,23 @@ const posts = require('./posts')
 let db = {}
 
 const defaultData = {
-  '894tuq4ut84ut8v4t8wun89g': {
+  "894tuq4ut84ut8v4t8wun89g": {
     id: '894tuq4ut84ut8v4t8wun89g',
-    parentId: '52c56115-a660-4a56-87f0-3b264e2ba0df',
+    parentId: "8xf0y6ziyjabvozdd253nd",
     timestamp: 1468166872634,
-    body: 'Hi there! I like react too! Comment.',
-    author: 'yuppers',
-    voteScore: 9,
+    body: 'Hi there! I am a COMMENT.',
+    author: 'thingtwo',
+    voteScore: 6,
     deleted: false,
     parentDeleted: false
   },
-  '8tu4bsun805n8un48ve89': {
+  "8tu4bsun805n8un48ve89": {
     id: '8tu4bsun805n8un48ve89',
-    parentId: '52c56115-a660-4a56-87f0-3b264e2ba0df',
+    parentId: "8xf0y6ziyjabvozdd253nd",
     timestamp: 1469479767190,
-    body: 'Psssh, obvious post is obvious, Comment',
-    author: 'mrSerious',
-    voteScore: -1,
-    deleted: false,
-    parentDeleted: false
-  },
-  '8tu4bsun777n8un48ve89': {
-    id: '8tu4bsun777n8un48ve89',
-    parentId: '52c56115-a660-4a56-87f0-3b264e2ba0df',
-    timestamp: 1470479767190,
-    body: 'Psssh, obvious post is obvious, AGAIN, Comment',
-    author: 'mrSerious',
-    voteScore: -3,
+    body: 'Comments. Are. Cool.',
+    author: 'thingone',
+    voteScore: -5,
     deleted: false,
     parentDeleted: false
   }

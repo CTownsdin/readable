@@ -16,8 +16,7 @@ import {
 import {
   postsFetchData, showPostEditForm, editPost, deletePost
 } from '../actions/action-posts'
-
-// import { sortUpdate } from '../actions/action-sort'
+import { sortUpdateComments } from '../actions/action-sort'
 
 class PostDetails extends React.Component {
   constructor (props) {
@@ -56,7 +55,7 @@ class PostDetails extends React.Component {
       <div>
         <Container fluid className='Main-container'>
           <Panel style={{ marginTop: '0.5em' }}>
-            { mainPost &&
+            {mainPost &&
               <div>
                 <Post p={mainPost} removePost={this.handleRemovePost} />
                 <Button className='PostDetails__editButton'
@@ -66,16 +65,16 @@ class PostDetails extends React.Component {
             }
           </Panel>
           <ul className='PostDetails__commentsList'>
-            { this.props.commentsIsLoading &&
+            {this.props.commentsIsLoading &&
               <p>Loading comments...</p>
             }
-            { this.props.commentsHasErrored &&
+            {this.props.commentsHasErrored &&
               <div>
                 <p>We're sorry, there's been an error.</p>
                 <p>{this.props.commentsHasErrored}</p>
               </div>
             }
-            { this.props.showPostEditForm &&
+            {this.props.showPostEditForm &&
               <Panel>
                 <PostForm post={mainPost}
                   onSubmit={(post) => {
@@ -85,7 +84,7 @@ class PostDetails extends React.Component {
                 />
               </Panel>
             }
-            { this.props.showCommentEditForm.show &&
+            {this.props.showCommentEditForm.show &&
               <Panel>
                 <h2>edit the comment...</h2>
                 <CommentForm comment={this.props.commentForEdit}
@@ -102,18 +101,21 @@ class PostDetails extends React.Component {
               <p>
                 <em>...comments</em>
                 <Button className='PostDetails__commentButton'
-                  onClick={() => this.props.dispatch(showCommentForm(true))}
-                >ADD A COMMENT</Button>
+                  onClick={() => this.props.dispatch(showCommentForm(true))}>Add a comment</Button>
+                <Button variant='flat' color='primary'
+                  onClick={() => this.props.dispatch(sortUpdateComments('timestamp'))}>Newest Posts</Button>
+                <Button variant='flat' color='primary'
+                  onClick={() => this.props.dispatch(sortUpdateComments('voteScore'))}>Highest Voted</Button>
               </p>
-              { this.props.showCommentForm &&
-              <Panel>
-                <CommentForm
-                  onSubmit={(comment) => this.props.dispatch(addComment(comment))}
-                  parentPost={mainPost}
-                    />
-              </Panel>
-                }
-              { comments.map((c) => (
+              {this.props.showCommentForm &&
+                <Panel>
+                  <CommentForm
+                    onSubmit={(comment) => this.props.dispatch(addComment(comment))}
+                    parentPost={mainPost}
+                  />
+                </Panel>
+              }
+              {comments.map((c) => (
                 <Panel key={c.id}>
                   <Comment c={c}
                     removeComment={this.handleRemoveComment}
@@ -141,6 +143,7 @@ const mapStateToProps = (state) => {
     commentForEdit: state.comments.find(c => c.id === commentForEditId),
     commentForEditId,
     sort: state.sort,
+    sortComments: state.sortComments,
     posts: state.posts
   }
 }

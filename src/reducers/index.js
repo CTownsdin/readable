@@ -15,7 +15,7 @@ import {
   showCommentEditForm,
   comments
 } from './reducer-comments'
-import { sort } from './reducer-sort'
+import { sort, sortComments } from './reducer-sort'
 
 const rootReducer = combineReducers({
   postsIsLoading,
@@ -32,7 +32,8 @@ const rootReducer = combineReducers({
   showCommentEditForm,
   comments,
 
-  sort
+  sort,
+  sortComments
 })
 
 export default rootReducer

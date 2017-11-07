@@ -19,6 +19,3 @@ Express API Server is started on 3001
 Start the react app frontend    
 $ npm install    
 $ npm run start    
-
-TODO:
-Post detail is available at /:category/:post_id

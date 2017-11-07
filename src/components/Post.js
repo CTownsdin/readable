@@ -14,9 +14,10 @@ const Post = ({ p, voteHandler, removePost }) => (
       </Col>
       <Col md='11'>
         <div className='comment'>
-          <Link to={{ pathname: `/post/${p.id}` }} >
+          <Link to={{ pathname: `/${p.category}/${p.id}` }} >
             <strong><p>{p.title}</p></strong>
             <p>{p.body}</p>
+            <p>{p.commentCount} comments</p>
           </Link>
           <p>post by: {p.author}</p>
         </div>

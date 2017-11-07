@@ -16,7 +16,7 @@ const AppRouter = () => (
         <Route exact path='/react' component={() => <Category title='React Posts' postsCategory='react' />} />
         <Route exact path='/redux' component={() => <Category title='Redux Posts' postsCategory='redux' />} />
         <Route exact path='/running' component={() => <Category title='Running Posts' postsCategory='running' />} />
-        <Route exact path='/post/:postId/comments' render={(props) => <PostDetails {...props} />} />
+        <Route exact path='/post/:postId' render={(props) => <PostDetails {...props} />} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

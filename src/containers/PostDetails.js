@@ -47,10 +47,10 @@ class PostDetails extends React.Component {
 
   render () {
     const { postId } = this.props.match.params
-    let { comments } = this.props
+    let { comments, sortComments } = this.props
     let mainPost = this.props.posts.find(p => p.id === postId)
-    // if (sort === 'voteScore') posts.sort((p1, p2) => p2.voteScore - p1.voteScore)
-    // else if (sort === 'timestamp') posts.sort((p1, p2) => p2.timestamp - p1.timestamp)
+    if (sortComments === 'voteScore') comments.sort((p1, p2) => p2.voteScore - p1.voteScore)
+    else if (sortComments === 'timestamp') comments.sort((p1, p2) => p2.timestamp - p1.timestamp)
 
     return (
       <div>
@@ -89,6 +89,7 @@ class PostDetails extends React.Component {
               <Panel>
                 <h2>edit the comment...</h2>
                 <CommentForm comment={this.props.commentForEdit}
+                  parentPost={mainPost}
                   onSubmit={(comment) => {
                     this.props.dispatch(editComment(comment, this.props.commentForEditId))
                     this.props.history.push('/')

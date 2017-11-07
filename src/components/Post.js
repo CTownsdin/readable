@@ -14,7 +14,7 @@ const Post = ({ p, voteHandler, removePost }) => (
       </Col>
       <Col md='11'>
         <div className='comment'>
-          <Link to={{ pathname: `/post/${p.id}/comments` }} >
+          <Link to={{ pathname: `/post/${p.id}` }} >
             <strong><p>{p.title}</p></strong>
             <p>{p.body}</p>
           </Link>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Post from '../components/Post'
 import PostForm from '../components/PostForm'
+import { Link } from 'react-router-dom'
 // actions
 import { sortUpdate } from '../actions/action-sort'
 import { postsFetchData, addPost, showPostForm } from '../actions/action-posts'
@@ -65,6 +66,7 @@ class Category extends React.Component {
             { posts.map((p) => (
               <Panel key={p.id}>
                 <Post p={p} voteHandler={this.handleVote} />
+                <Link to={`/post/${p.id}`}>View this post</Link>
               </Panel>
             ))}
           </ul>

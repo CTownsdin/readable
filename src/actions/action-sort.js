@@ -4,3 +4,10 @@ export function sortUpdate (sortType) {
     payload: sortType
   }
 }
+
+export function sortUpdateComments (sortType) {
+  return {
+    type: 'SORT_UPDATE_COMMENTS',
+    payload: sortType
+  }
+}

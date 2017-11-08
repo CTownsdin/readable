@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 // muicss
 import Panel from 'muicss/lib/react/panel'
 import Container from 'muicss/lib/react/container'
@@ -19,35 +20,40 @@ import {
 import { sortUpdateComments } from '../actions/action-sort'
 
 class PostDetails extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.handleRemovePost = this.handleRemovePost.bind(this)
     this.handleRemoveComment = this.handleRemoveComment.bind(this)
     this.handleEditComment = this.handleEditComment.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const { postId } = this.props.match.params
     if (this.props.posts.length === 0) this.props.dispatch(postsFetchData('http://localhost:3001/posts')) // deep linking
     this.props.dispatch(commentsFetchData(`http://localhost:3001/posts/${postId}/comments`))
   }
 
-  handleRemovePost (postId) {
+  handleRemovePost(postId) {
     this.props.dispatch(deletePost(postId))
   }
 
-  handleRemoveComment (commentId) {
+  handleRemoveComment(commentId) {
     this.props.dispatch(deleteComment(commentId))
   }
 
-  handleEditComment (commentId) {
+  handleEditComment(commentId) {
     this.props.dispatch(showCommentEditForm(true, commentId))
   }
 
-  render () {
+  render() {
     const { postId } = this.props.match.params
     let { comments, sortComments } = this.props
     let mainPost = this.props.posts.find(p => p.id === postId)
+
+    if (!mainPost) {
+      return (<Redirect to='/notfound' />)
+    }
+
     if (sortComments === 'voteScore') comments.sort((p1, p2) => p2.voteScore - p1.voteScore)
     else if (sortComments === 'timestamp') comments.sort((p1, p2) => p2.timestamp - p1.timestamp)
 
